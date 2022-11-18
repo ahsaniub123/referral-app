@@ -15,8 +15,8 @@ class AdminDashboardController extends Controller
         $user = Auth::user();
         $user->assignRole('admin');
 
-        $subscribed_users = User::where('subscription', 1)->count();
-        $non_subscribed_users = User::where('subscription', 0)->count();
+        $subscribed_users = User::role('shopify')->where('subscription', 1)->count();
+        $non_subscribed_users = User::role('shopify')->where('subscription', 0)->count();
 
         return view('admin.dashboard')->with([
             'user' => $user,

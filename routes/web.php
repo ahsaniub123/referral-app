@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['verify.shopify'] ], function () {
 
-    Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'admins'], function () {
         Route::get('/', "AdminDashboardController@index")->name('home');
         Route::get('/shopify', "AdminDashboardController@users")->name('shopify.index');
         Route::get('/settings', 'AdminDashboardController@settings')->name('settings.index');

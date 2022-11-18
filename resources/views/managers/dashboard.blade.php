@@ -105,7 +105,13 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body p-2 text-center">
-                            <div class="h1 m-0">{{ $user->wallet_credit }}</div>
+                            <div class="h1 m-0">
+                                @if($user->wallet_credit)
+                                    {{ $user->wallet_credit }}
+                                @else
+                                    0
+                                @endif
+                            </div>
                             <div class="text-muted mb-3">Wallet Credits</div>
                         </div>
                     </div>
@@ -114,7 +120,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body p-2 text-center">
-                            <div class="h1 m-0">4</div>
+                            <div class="h1 m-0">{{ $user->wallet_logs()->count() }}</div>
                             <div class="text-muted mb-3">Discount Codes</div>
                         </div>
                     </div>
