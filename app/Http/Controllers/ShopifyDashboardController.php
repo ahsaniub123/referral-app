@@ -77,6 +77,9 @@ class ShopifyDashboardController extends Controller
 
         $user = Auth::user();
 
+        if(!$user->subscription)
+            return redirect()->route('shopify.home')->with('error', 'Please complete subscription first');
+
         return view('managers.wallets.index')->with([
             'user' => $user,
         ]);
