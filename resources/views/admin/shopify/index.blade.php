@@ -33,7 +33,7 @@
                             <th class="text-center">Date Joined</th>
                             <th class="text-center">Wallet Credits</th>
                             <th class="text-center">Wallet Credits Used</th>
-                            <th class="text-end">Actions</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
