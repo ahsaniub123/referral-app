@@ -211,7 +211,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-manager-password-{{ $shopify_user->id }}">
-                                            Edit
+                                            Reset Password
                                         </a>
                                         <div class="modal modal-blur fade" id="modal-edit-manager-password-{{ $shopify_user->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered" style="text-align: left;" role="document">
@@ -240,8 +240,35 @@
                                             </div>
                                         </div>
 
-                                        <a href="{{ route('shopify.user.delete', $shopify_user->id) }}" class="btn btn-sm btn-danger">Delete</a>
-                                        <a href="{{ route('shopify.user.change.status', $shopify_user->id) }}" class="btn btn-sm btn-info">
+                                        <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-user-{{ $shopify_user->id }}">
+                                            Delete
+                                        </a>
+                                        <div class="modal modal-blur fade" id="modal-delete-user-{{ $shopify_user->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered" style="text-align: left;" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Delete User?</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <h5>Are you sure you want to remove this user?</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                                                            Cancel
+                                                        </button>
+                                                        <a href="{{ route('shopify.user.delete', $shopify_user->id) }}" class="btn btn-danger" >
+                                                            Delete
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <a href="{{ route('shopify.user.change.status', $shopify_user->id) }}" class="btn btn-sm @if($shopify_user->deactive) btn-success @else btn-info @endif">
                                             @if($shopify_user->deactive)
                                                 Activate
                                             @else

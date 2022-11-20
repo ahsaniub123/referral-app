@@ -51,7 +51,7 @@ class ShopifyDashboardController extends Controller
         $user->save();
 
         if($referrer = $user->referrer) {
-            $referrer->wallet_credit += 5;
+            $referrer->wallet_credit += $setting->subscription_amount;
             $referrer->save();
         }
 

@@ -20,5 +20,7 @@
 </head>
 <body class="antialiased border-top-wide border-primary d-flex flex-column">
     @yield('content')
+
+    @include('managers.inc.footer')
 </body>
 </html>
