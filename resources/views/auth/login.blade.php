@@ -34,8 +34,12 @@
                     </div>
                     <div class="form-footer">
                         <button type="submit" class="btn btn-primary w-100 mb-2">Log in</button>
-                        <span class="text-danger d-block">Note: In case you are having issue with login, please contact admin</span>
+                        @if(Session::has('error'))
+                            <span class="text-danger d-block">{{ Session::get('error') }}</span>
+                        @endif
                         <a href="{{ route('register') }}">Create an account?</a>
+                        <span class="text-danger d-block">Note: In case you are having issue with login, please contact admin</span>
+
                     </div>
                 </div>
             </form>
