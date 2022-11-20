@@ -22,7 +22,7 @@
 
             <div class="card">
                 <div class="table-responsive">
-                    <table class="table table-vcenter card-table table-striped">
+                    <table class="table table-vcenter card-table table-striped table-responsive">
                         <thead>
                         <tr>
                             <th>Name</th>
