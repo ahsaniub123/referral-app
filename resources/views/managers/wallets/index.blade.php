@@ -5,7 +5,7 @@
         <div class="row align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    Wallet Details
+                    Discount Codes
                 </h2>
             </div>
 

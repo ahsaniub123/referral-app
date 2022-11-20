@@ -32,6 +32,8 @@
                             <th class="text-center">Subscription</th>
                             <th class="text-center">Date Joined</th>
                             <th class="text-center">Wallet Credits</th>
+                            <th class="text-center">Wallet Credits Used</th>
+                            <th class="text-end">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -198,6 +200,25 @@
                                     @else
                                         0
                                     @endif
+                                </td>
+                                <td class="text-center">
+                                    @if($shopify_user->wallet_credit_used)
+                                        {{ $shopify_user->wallet_credit_used }}
+                                    @else
+                                        0
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('shopify.user.delete', $shopify_user->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="{{ route('shopify.user.change.status', $shopify_user->id) }}" class="btn btn-sm btn-info">
+                                            @if($shopify_user->deactive)
+                                                Activate
+                                            @else
+                                                De-activate
+                                            @endif
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @empty

@@ -21,6 +21,11 @@ class ShopifyDashboardController extends Controller
         $user = Auth::user();
         $setting = Setting::first();
 
+        if($user->deactive) {
+            Auth::logout();
+            return \redirect()->route('login')->with('error', 'Your access has been disabled');
+        }
+
         return view('managers.dashboard')->with([
             'user' => $user,
             'setting' => $setting
@@ -46,7 +51,7 @@ class ShopifyDashboardController extends Controller
         $user->save();
 
         if($referrer = $user->referrer) {
-            $referrer->wallet_credit =+ 5;
+            $referrer->wallet_credit += 5;
             $referrer->save();
         }
 

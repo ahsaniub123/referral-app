@@ -65,4 +65,21 @@ class AdminDashboardController extends Controller
 
         return Redirect::tokenRedirect('settings.index', ['notice' => 'Settings Saved Successfully']);
     }
+
+    public function delete_user($id) {
+
+        $user = User::find($id);
+        $user->delete();
+
+        return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Deleted Successfully']);
+    }
+
+    public function change_user_status($id) {
+
+        $user = User::find($id);
+        $user->deactive = !$user->deactive;
+        $user->save();
+
+        return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Status Changed Successfully']);
+    }
 }

@@ -88,8 +88,13 @@
             @else
 
                 <div class="col-md-12">
-                    <div class="alert">
+                    <div class="alert d-flex justify-content-between">
                         <span class="alert-title">Please share your referral link <span class="text-primary text-decoration-underline">{{ route('register') }}?ref={{ $user->referral_token }}</span> with others in order to earn wallet credit</span>
+                        <div>
+                            <a class="btn btn-sm btn-primary fb-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ route('register') }}?ref={{ $user->referral_token }}"><i class="fab fa-facebook"></i></a>
+                            <a class="btn btn-sm btn-info discount-share-btn tw-btn" target="_blank" href="https://twitter.com/intent/tweet?url={{ route('register') }}?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
+                            <a target="_blank" class="btn btn-sm btn-success discount-share-btn cp-btn" href="https://api.whatsapp.com/send?&text={{ route('register') }}?ref={{ $user->referral_token }}"><i class="fab fa-whatsapp"></i></a>
+                        </div>
                     </div>
                 </div>
 
