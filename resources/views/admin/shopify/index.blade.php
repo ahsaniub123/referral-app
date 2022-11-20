@@ -252,7 +252,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <h5>Are you sure you want to remove this user?</h5>
+                                                            <h3>Are you sure you want to remove this user?</h3>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
