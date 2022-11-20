@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-footer">
                         <button type="submit" class="btn btn-primary w-100 mb-2">Log in</button>
-                        <span class="text-primary d-block">In case you are having issue with login, please contact admin</span>
+                        <span class="text-danger d-block">Note: In case you are having issue with login, please contact admin</span>
                         <a href="{{ route('register') }}">Create an account?</a>
                     </div>
                 </div>
