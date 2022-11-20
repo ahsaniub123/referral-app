@@ -24,6 +24,7 @@ Route::group(['middleware' => ['verify.shopify'] ], function () {
         Route::get('/shopify', "AdminDashboardController@users")->name('shopify.index');
         Route::get('/shopify/{id}/delete', "AdminDashboardController@delete_user")->name('shopify.user.delete');
         Route::get('/shopify/{id}/change-status', "AdminDashboardController@change_user_status")->name('shopify.user.change.status');
+        Route::get('/shopify/{id}/update', "AdminDashboardController@update_user")->name('shopify.user.update');
         Route::get('/settings', 'AdminDashboardController@settings')->name('settings.index');
         Route::post('/settings-save', 'AdminDashboardController@save_settings')->name('settings.save');
 

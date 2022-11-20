@@ -82,4 +82,20 @@ class AdminDashboardController extends Controller
 
         return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Status Changed Successfully']);
     }
+
+    public function update_user(Request $request, $id) {
+
+        $user = User::find($id);
+
+        $this->validate($request, [
+            'password' => ['required'],
+        ]);
+
+        $user->password = \Illuminate\Support\Facades\Hash::make($request->password);
+        $user->save();
+
+        return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Password Updated Successfully']);
+
+    }
+
 }
