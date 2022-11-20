@@ -31,11 +31,11 @@ Route::group(['middleware' => ['verify.shopify'] ], function () {
 });
 
 
-Route::group(['prefix' => 'shopify'], function() {
+//Route::group(['prefix' => 'shopify'], function() {
     Auth::routes();
-});
+//});
 
-Route::group(['prefix' => 'shopify',
+Route::group([
     'middleware' => [
         'auth', 'role:shopify'
     ]
