@@ -23,7 +23,7 @@ class ShopifyDashboardController extends Controller
 
         if($user->deactive) {
             Auth::logout();
-            return \redirect()->route('login')->with('error', 'Your access has been disabled');
+            return \redirect()->route('login')->with('error', 'Your access has been disabled, please contact admin');
         }
 
         return view('managers.dashboard')->with([
