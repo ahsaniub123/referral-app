@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Setting;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -50,13 +51,21 @@ class ProductController extends Controller
         $settings = Setting::first();
 
         if($settings && $settings->price_rule_id) {
+
+            $user_ids = User::where('subscription', 1)->where('deactive', 0)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
+
             $data = [
                 "price_rule" => [
                     "entitled_product_ids" => $product_ids,
-                    'starts_at' => now(),
-                    'ends_at' => null
                 ]
             ];
+
+            if(count($user_ids)) {
+                $data['price_rule']['starts_at'] = now();
+                $data['price_rule']['ends_at'] = null;
+            } else {
+                $data['price_rule']['ends_at'] = now();
+            }
 
             $user->api()->rest('PUT', '/admin/price_rules/' . $settings->price_rule_id . '.json', $data);
         }
