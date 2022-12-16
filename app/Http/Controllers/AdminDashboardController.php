@@ -136,7 +136,7 @@ class AdminDashboardController extends Controller
                 ]
             ];
 
-            $api->rest('POST', '/admin/price_rules/'.$settings->price_rule_id.'/discount_codes/'.$settings->discount_id.'.json', $data);
+            $api->rest('PUT', '/admin/price_rules/'.$settings->price_rule_id.'/discount_codes/'.$settings->discount_id.'.json', $data);
 
             $settings->discount_code = $settings->product_discount .' PERCENT OFF';
             $settings->save();

@@ -7,12 +7,12 @@
                     Settings
                 </h2>
             </div>
-            <div class="col-8 text-end">
-                <a href="{{ route('products.sync') }}" class="btn btn-primary">
-                    <i class="fa fa-sync" style="margin-right: 3px;"></i>
-                    Sync Products
-                </a>
-            </div>
+{{--            <div class="col-8 text-end">--}}
+{{--                <a href="{{ route('products.sync') }}" class="btn btn-primary">--}}
+{{--                    <i class="fa fa-sync" style="margin-right: 3px;"></i>--}}
+{{--                    Sync Products--}}
+{{--                </a>--}}
+{{--            </div>--}}
         </div>
     </div>
 @endsection
