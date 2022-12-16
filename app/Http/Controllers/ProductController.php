@@ -60,13 +60,6 @@ class ProductController extends Controller
                 ]
             ];
 
-            if(count($user_ids)) {
-                $data['price_rule']['starts_at'] = now();
-                $data['price_rule']['ends_at'] = null;
-            } else {
-                $data['price_rule']['ends_at'] = now();
-            }
-
             $user->api()->rest('PUT', '/admin/price_rules/' . $settings->price_rule_id . '.json', $data);
         }
 
