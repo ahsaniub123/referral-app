@@ -181,6 +181,7 @@ class AdminDashboardController extends Controller
                 $data = [
                     "price_rule" => [
                         "customer_selection" => "all",
+                        "prerequisite_customer_ids" => [],
                     ]
                 ];
             }
