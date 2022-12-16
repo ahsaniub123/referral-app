@@ -62,7 +62,8 @@ class ShopifyDashboardController extends Controller
                     "price_rule" => [
                         "prerequisite_customer_ids" => $user_ids,
                         "customer_selection" => 'prerequisite',
-                        'starts_at' => now()
+                        'starts_at' => now(),
+                        'ends_at' => null
                     ]
                 ];
             }
@@ -155,7 +156,8 @@ class ShopifyDashboardController extends Controller
                 "price_rule" => [
                     "prerequisite_customer_ids" => $user_ids,
                     "customer_selection" => 'prerequisite',
-                    'starts_at' => now()
+                    'starts_at' => now(),
+                    'ends_at' => null
                 ]
             ];
         }
