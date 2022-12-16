@@ -61,7 +61,8 @@ class ShopifyDashboardController extends Controller
                 $data = [
                     "price_rule" => [
                         "prerequisite_customer_ids" => $user_ids,
-                        "customer_selection" => 'prerequisite'
+                        "customer_selection" => 'prerequisite',
+                        'starts_at' => now()
                     ]
                 ];
             }
@@ -69,6 +70,8 @@ class ShopifyDashboardController extends Controller
                 $data = [
                     "price_rule" => [
                         "customer_selection"=> "all",
+                        "prerequisite_customer_ids" => [],
+                        "ends_at" => now()
                     ]
                 ];
             }
@@ -151,7 +154,8 @@ class ShopifyDashboardController extends Controller
             $data = [
                 "price_rule" => [
                     "prerequisite_customer_ids" => $user_ids,
-                    "customer_selection" => 'prerequisite'
+                    "customer_selection" => 'prerequisite',
+                    'starts_at' => now()
                 ]
             ];
         }
@@ -159,6 +163,8 @@ class ShopifyDashboardController extends Controller
             $data = [
                 "price_rule" => [
                     "customer_selection"=> "all",
+                    "prerequisite_customer_ids" => [],
+                    "ends_at" => now()
                 ]
             ];
         }

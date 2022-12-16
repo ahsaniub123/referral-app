@@ -123,6 +123,7 @@ class AdminDashboardController extends Controller
                     "title" => $settings->product_discount .' % OFF',
                     "value_type" => "percentage",
                     "value" => '-' . $settings->product_discount,
+                    'starts_at' => now()
                 ]
             ];
 
@@ -154,7 +155,8 @@ class AdminDashboardController extends Controller
                     $data = [
                         "price_rule" => [
                             "prerequisite_customer_ids" => $user_ids,
-                            "customer_selection" => 'prerequisite'
+                            "customer_selection" => 'prerequisite',
+                            'starts_at' => now()
                         ]
                     ];
                 } else {
@@ -198,7 +200,8 @@ class AdminDashboardController extends Controller
                 $data = [
                     "price_rule" => [
                         "prerequisite_customer_ids" => $user_ids,
-                        "customer_selection" => 'prerequisite'
+                        "customer_selection" => 'prerequisite',
+                        'starts_at' => now()
                     ]
                 ];
             } else {
