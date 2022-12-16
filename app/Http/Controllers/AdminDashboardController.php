@@ -126,13 +126,20 @@ class AdminDashboardController extends Controller
                     "title" => $settings->product_discount .' PERCENT OFF',
                     "value_type" => "percentage",
                     "value" => '-' . $settings->product_discount,
-                    'starts_at' => count($user_ids) ? now() : null,
-                    'ends_at' => count($user_ids) ? null : now()
                 ]
             ];
 
-            $res = $api->rest('PUT', '/admin/price_rules/'.$settings->price_rule_id.'.json', $data);
-dd($res);
+            if(count($user_ids)) {
+                $data['price_rule']['starts_at'] = now();
+                $data['price_rule']['ends_at'] = null;
+            } else {
+                $data['price_rule']['starts_at'] = null;
+                $data['price_rule']['ends_at'] = now();
+            }
+
+
+            $api->rest('PUT', '/admin/price_rules/'.$settings->price_rule_id.'.json', $data);
+
             $data = [
                 "discount_code" => [
                     "code" => $settings->product_discount .' PERCENT OFF'
