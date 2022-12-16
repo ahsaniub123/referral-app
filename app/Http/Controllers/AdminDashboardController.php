@@ -128,10 +128,18 @@ class AdminDashboardController extends Controller
                 ]
             ];
 
+            $api->rest('PUT', '/admin/price_rules/'.$settings->price_rule_id.'.json', $data);
+
+            $data = [
+                "discount_code" => [
+                    "code" => $settings->product_discount .' PERCENT OFF'
+                ]
+            ];
+
+            $api->rest('POST', '/admin/price_rules/'.$settings->price_rule_id.'/discount_codes/'.$settings->discount_id.'.json', $data);
+
             $settings->discount_code = $settings->product_discount .' PERCENT OFF';
             $settings->save();
-
-            $api->rest('PUT', '/admin/price_rules/'.$settings->price_rule_id.'.json', $data);
         }
 
         return Redirect::tokenRedirect('settings.index', ['notice' => 'Settings Saved Successfully']);
