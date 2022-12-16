@@ -61,6 +61,9 @@ class User extends Authenticatable implements IShopModel
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = [
+        'subscribed_at', 'subscription_end_at'
+    ];
 
     /**
      * A user has a referrer.

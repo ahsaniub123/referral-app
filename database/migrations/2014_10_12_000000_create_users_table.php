@@ -23,7 +23,12 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('subscription')->default(0);
+            $table->boolean('deactive')->default(0);
+            $table->timestamp('subscribed_at')->nullable();
+            $table->timestamp('subscription_end_at')->nullable();
+            $table->string('subscription_plan')->nullable();
             $table->unsignedBigInteger('referrer_id')->nullable();
+            $table->unsignedBigInteger('shopify_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

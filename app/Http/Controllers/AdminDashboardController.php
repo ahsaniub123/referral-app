@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
+use Osiset\BasicShopifyAPI\BasicShopifyAPI;
+use Osiset\BasicShopifyAPI\Options;
+use Osiset\BasicShopifyAPI\Session;
 
 class AdminDashboardController extends Controller
 {
@@ -61,7 +66,64 @@ class AdminDashboardController extends Controller
             $settings = new Setting();
 
         $settings->subscription_amount = $request->subscription_amount;
+        $settings->subscription_plan = $request->subscription_plan;
+        $settings->wallet_credits = $request->wallet_credits;
+        $settings->product_discount = $request->product_discount;
         $settings->save();
+
+        $shop = User::first();
+        $options = new Options();
+        $options->setVersion('2022-04');
+        $api = new BasicShopifyAPI($options);
+        $api->setSession(new Session($shop->name, $shop->password));
+        $product_ids = Product::pluck('shopify_id')->toArray();
+
+        if($settings->price_rule_id == null) {
+
+            $data = [
+                "price_rule" => [
+                    "title" => $settings->product_discount .' % OFF',
+                    "target_type" => "line_item",
+                    "target_selection" => "entitled",
+                    "allocation_method" => "each",
+                    "value_type" => "percentage",
+                    "value" => '-' . $settings->product_discount,
+                    "entitled_product_ids" => $product_ids,
+                    "customer_selection"=> "all",
+                    'starts_at' => now()
+                ]
+            ];
+
+            $response = $api->rest('POST', '/admin/price_rules.json', $data);
+            $price_rule = $response['body']['container']['price_rule'];
+
+            $data = [
+                "discount_code" => [
+                    "code" => $price_rule['title']
+                ]
+            ];
+
+            $discount_response = $api->rest('POST', '/admin/price_rules/' . $price_rule['id'] . '/discount_codes.json', $data);
+            $discount_id = $discount_response['body']['container']['discount_code']['id'];
+            $discount_code = $price_rule['title'];
+
+            $settings->discount_code = $discount_code;
+            $settings->discount_id = $discount_id;
+            $settings->price_rule_id = $price_rule['id'];
+            $settings->save();
+
+        }
+        else {
+            $data = [
+                "price_rule" => [
+                    "title" => $settings->product_discount .' % OFF',
+                    "value_type" => "percentage",
+                    "value" => '-' . $settings->product_discount,
+                ]
+            ];
+
+            $api->rest('PUT', '/admin/price_rules/'.$settings->price_rule_id.'.json', $data);
+        }
 
         return Redirect::tokenRedirect('settings.index', ['notice' => 'Settings Saved Successfully']);
     }

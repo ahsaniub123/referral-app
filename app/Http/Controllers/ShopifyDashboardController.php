@@ -20,10 +20,91 @@ class ShopifyDashboardController extends Controller
 
         $user = Auth::user();
         $setting = Setting::first();
+        $admin = User::first();
+        $options = new Options();
+        $options->setVersion('2022-04');
+        $api = new BasicShopifyAPI($options);
+        $api->setSession(new Session($admin->name, $admin->password));
 
         if($user->deactive) {
             Auth::logout();
             return \redirect()->route('login')->with('error', 'Your access has been disabled, please contact admin');
+        }
+
+        if($user->shopify_id == null) {
+
+            $payload = [
+                'customer' => [
+                    'first_name ' => $user->name,
+                    'email' => $user->email
+                ]
+            ];
+
+            $response = $api->rest('POST', '/admin/customers.json', $payload);
+            $response = json_decode(json_encode($response));
+
+            if (!$response->errors) {
+                $user->shopify_id = $response->body->customer->id;
+                $user->save();
+            }
+        }
+
+        if($user->subscription == 1 && $user->subscription_end_at->isPast()) {
+            $user->subscription = 0;
+            $user->subscription_end_at = null;
+            $user->subscribed_at = null;
+            $user->save();
+
+            $user_ids = User::where('subscription', 1)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
+
+            if(count($user_ids)) {
+                $data = [
+                    "price_rule" => [
+                        "prerequisite_customer_ids" => $user_ids,
+                        "customer_selection" => 'prerequisite'
+                    ]
+                ];
+            }
+            else {
+                $data = [
+                    "price_rule" => [
+                        "customer_selection"=> "all",
+                    ]
+                ];
+            }
+
+            $api->rest('PUT', '/admin/price_rules/'.$setting->price_rule_id.'.json', $data);
+        }
+
+        if($user->shopify_id) {
+            $api->rest('POST', '/admin/customers/' . $user->shopify_id . '/metafields.json', [
+                'metafield' => [
+                    'namespace' => 'referral_app',
+                    'key' => 'subscribed',
+                    'type' => 'boolean',
+                    'value' => $user->subscription
+                ]
+            ]);
+
+            $api->rest('POST', '/admin/customers/' . $user->shopify_id . '/metafields.json', [
+                'metafield' => [
+                    'namespace' => 'referral_app',
+                    'key' => 'subscription_end_at',
+                    'type' => 'single_line_text_field',
+                    'value' => $user->subscription_end_at ? $user->subscription_end_at->toDateString() : 'not subscribed'
+                ]
+            ]);
+
+            if ($setting->subscription_amount) {
+                $api->rest('POST', '/admin/customers/' . $user->shopify_id . '/metafields.json', [
+                    'metafield' => [
+                        'namespace' => 'referral_app',
+                        'key' => 'discount_on_products',
+                        'type' => 'number_integer',
+                        'value' => $setting->subscription_amount
+                    ]
+                ]);
+            }
         }
 
         return view('managers.dashboard')->with([
@@ -48,12 +129,41 @@ class ShopifyDashboardController extends Controller
         }
 
         $user->subscription = 1;
+        $user->subscribed_at = now();
+        $user->subscription_end_at = now()->addYear();
+        $user->subscription_plan = $setting->subscription_plan;
         $user->save();
 
         if($referrer = $user->referrer) {
-            $referrer->wallet_credit += $setting->subscription_amount;
+            $referrer->wallet_credit += $setting->wallet_credits;
             $referrer->save();
         }
+
+        $shop = User::first();
+        $options = new Options();
+        $options->setVersion('2022-04');
+        $api = new BasicShopifyAPI($options);
+        $api->setSession(new Session($shop->name, $shop->password));
+
+        $user_ids = User::where('subscription', 1)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
+
+        if(count($user_ids)) {
+            $data = [
+                "price_rule" => [
+                    "prerequisite_customer_ids" => $user_ids,
+                    "customer_selection" => 'prerequisite'
+                ]
+            ];
+        }
+        else {
+            $data = [
+                "price_rule" => [
+                    "customer_selection"=> "all",
+                ]
+            ];
+        }
+
+        $api->rest('PUT', '/admin/price_rules/'.$setting->price_rule_id.'.json', $data);
 
         return redirect()->back()->with('success','Subscription Completed Successfully');
     }

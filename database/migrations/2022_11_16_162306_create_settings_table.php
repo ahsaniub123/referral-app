@@ -16,6 +16,12 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->double('subscription_amount')->nullable();
+            $table->string('subscription_plan')->nullable();
+            $table->integer('wallet_credits')->nullable();
+            $table->double('product_discount')->nullable();
+            $table->string('discount_code')->nullable();
+            $table->unsignedBigInteger('discount_id')->nullable();
+            $table->unsignedBigInteger('price_rule_id')->nullable();
             $table->timestamps();
         });
     }

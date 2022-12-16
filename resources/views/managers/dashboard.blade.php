@@ -48,149 +48,161 @@
 
             @if(!$user->subscription)
                 <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header bg-body">
-                        <div class="card-title">
-                            Let's start by completing the subscription
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('shopify.subscription.complete') }}" method="post" id="payment-form">
-                            @csrf
-                            <div class="form-inline">
-                                <label class="form-label" for="cardholder-name">Cardholder's Name</label>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" id="cardholder-name" class="form-control">
+                    <div class="alert alert-success d-flex justify-content-between align-items-center">
+                        <span class="alert-title">Let's start by completing the subscription</span>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-subscribe">Subscribe now</button>
+
+                        <div class="modal modal-blur fade" id="modal-subscribe" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" style="text-align: left;" role="document">
+                                <form class="modal-content" action="{{ route('shopify.subscription.complete') }}" method="post" id="payment-form">
+                                    @csrf
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Lets start by completing the subscription</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                </div>
-                                <br>
+                                    <div class="modal-body">
+                                        <div class="form-inline">
+                                        <label class="form-label" for="cardholder-name">Cardholder's Name</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="cardholder-name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <br>
 
-                                <div class="form-inline my-2">
-                                    <label class="form-label" for="card-element">Credit or debit card</label>
-                                </div>
+                                        <div class="form-inline my-2">
+                                            <label class="form-label" for="card-element">Credit or debit card</label>
+                                        </div>
 
 
-                                <div id="card-element">
-                                    <!-- A Stripe Element will be inserted here. -->
-                                </div>
+                                        <div id="card-element">
+                                            <!-- A Stripe Element will be inserted here. -->
+                                        </div>
 
-                                <!-- Used to display form errors. -->
-                                <div id="card-errors" role="alert"></div>
-                            </div>
-                            <div class="text-end mt-3">
-                                <button type="submit" id="pay-btn" class="btn btn-success waves-effect pay-btn">Pay Now - {{ $setting->subscription_amount }}$</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            @else
-
-                <div class="col-md-12">
-                    <div class="alert d-flex justify-content-between">
-                        <span class="alert-title">Please share your referral link <span class="text-primary text-decoration-underline">{{ route('register') }}?ref={{ $user->referral_token }}</span> with others in order to earn {{ $setting->subscription_amount }} wallet credits</span>
-                        <div>
-                            <a class="btn btn-sm btn-primary fb-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ route('register') }}?ref={{ $user->referral_token }}"><i class="fab fa-facebook"></i></a>
-                            <a class="btn btn-sm btn-info discount-share-btn tw-btn" target="_blank" href="https://twitter.com/intent/tweet?url={{ route('register') }}?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
-                            <a target="_blank" class="btn btn-sm btn-success discount-share-btn cp-btn" href="https://api.whatsapp.com/send?&text={{ route('register') }}?ref={{ $user->referral_token }}"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body p-2 text-center">
-                            <div class="h1 m-0">{{ $user->referrals()->count() }}</div>
-                            <div class="text-muted mb-3">Referral Users</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body p-2 text-center">
-                            <div class="h1 m-0">
-                                @if($user->wallet_credit)
-                                    {{ $user->wallet_credit }}
-                                @else
-                                    0
-                                @endif
-                            </div>
-                            <div class="text-muted mb-3">Wallet Credits</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body p-2 text-center">
-                            <div class="h1 m-0">{{ $user->wallet_logs()->count() }}</div>
-                            <div class="text-muted mb-3">Discount Codes</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row row-cards">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header bg-body">
-                                <div class="card-title">
-                                    Recent Referral Users
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class=" table-responsive">
-                                <table class="table table-vcenter card-table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Subscription</th>
-                                        <th>Date Joined</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @forelse($user->referrals()->latest()->limit(5)->get() as $referral)
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex py-1 align-items-center">
-                                                    <div class="flex-fill">
-                                                        <div class="font-weight-medium">
-                                                            {{ $referral->name }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                {{ $referral->email }}
-                                            </td>
-                                            <td>
-                                                @if($referral->subscription)
-                                                    <span class="badge bg-success">Completed</span>
-                                                @else
-                                                    <span class="badge bg-danger">Not Completed</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                {{ $referral->created_at->toDateString() }}
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr class="text-center">
-                                            <td colspan="4">
-                                                No Referrals yet!
-                                            </td>
-                                        </tr>
-                                    @endforelse
-                                    </tbody>
-                                </table>
-                            </div>
+                                        <!-- Used to display form errors. -->
+                                        <div id="card-errors" role="alert"></div>
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="text-end mt-3">
+                                            <button type="submit" id="pay-btn" class="btn btn-success waves-effect pay-btn">Pay Now - {{ $setting->subscription_amount }}$</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
+
                     </div>
                 </div>
             @endif
+
+
+            @if($user->subscription)
+                <div class="col-md-12">
+                <div class="alert d-flex justify-content-between">
+                    <span class="alert-title">Please share your referral link <span class="text-primary text-decoration-underline">{{ route('register') }}?ref={{ $user->referral_token }}</span> with others in order to earn {{ $setting->subscription_amount }} wallet credits</span>
+                    <div>
+                        <a class="btn btn-sm btn-primary fb-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ route('register') }}?ref={{ $user->referral_token }}"><i class="fab fa-facebook"></i></a>
+                        <a class="btn btn-sm btn-info discount-share-btn tw-btn" target="_blank" href="https://twitter.com/intent/tweet?url={{ route('register') }}?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
+                        <a target="_blank" class="btn btn-sm btn-success discount-share-btn cp-btn" href="https://api.whatsapp.com/send?&text={{ route('register') }}?ref={{ $user->referral_token }}"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body p-2 text-center">
+                        <div class="h1 m-0">{{ $user->referrals()->count() }}</div>
+                        <div class="text-muted mb-3">Referral Users</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body p-2 text-center">
+                        <div class="h1 m-0">
+                            @if($user->wallet_credit)
+                                {{ $user->wallet_credit }}
+                            @else
+                                0
+                            @endif
+                        </div>
+                        <div class="text-muted mb-3">Wallet Credits</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body p-2 text-center">
+                        <div class="h1 m-0">{{ $user->wallet_logs()->count() }}</div>
+                        <div class="text-muted mb-3">Discount Codes</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cards">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header bg-body">
+                            <div class="card-title">
+                                Recent Referral Users
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class=" table-responsive">
+                            <table class="table table-vcenter card-table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subscription</th>
+                                    <th>Date Joined</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse($user->referrals()->latest()->limit(5)->get() as $referral)
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex py-1 align-items-center">
+                                                <div class="flex-fill">
+                                                    <div class="font-weight-medium">
+                                                        {{ $referral->name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{ $referral->email }}
+                                        </td>
+                                        <td>
+                                            @if($referral->subscription)
+                                                <span class="badge bg-success">Completed</span>
+                                            @else
+                                                <span class="badge bg-danger">Not Completed</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $referral->created_at->toDateString() }}
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr class="text-center">
+                                        <td colspan="4">
+                                            No Referrals yet!
+                                        </td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>

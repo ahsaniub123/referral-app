@@ -197,7 +197,7 @@ return [
     |
     */
 
-    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_price_rules,write_price_rules,read_discounts,write_discounts'),
+    'api_scopes' => env('SHOPIFY_API_SCOPES', 'read_price_rules,write_price_rules,read_discounts,write_discounts,read_customers,write_customers,read_products,write_products'),
 
     /*
     |--------------------------------------------------------------------------
@@ -341,16 +341,14 @@ return [
     */
 
     'webhooks' => [
-        /*
-            [
-                'topic' => env('SHOPIFY_WEBHOOK_1_TOPIC', 'ORDERS_CREATE'),
-                'address' => env('SHOPIFY_WEBHOOK_1_ADDRESS', 'https://some-app.com/webhook/orders-create')
-            ], [
-                'topic' => env('SHOPIFY_WEBHOOK_2_TOPIC', 'APP_PURCHASES_ONE_TIME_UPDATE'),
-                'address' => env('SHOPIFY_WEBHOOK_2_ADDRESS', 'https://some-app.com/webhook/purchase'),
-            ]
-            ...
-        */
+        [
+            'topic' => 'PRODUCTS_CREATE',
+            'address' => 'https://account.21spirit.com/webhook/products-create'
+        ],
+        [
+            'topic' => 'CUSTOMERS_DELETE',
+            'address' => 'https://account.21spirit.com/webhook/customers-delete'
+        ]
     ],
 
     /*

@@ -7,6 +7,12 @@
                     Settings
                 </h2>
             </div>
+            <div class="col-8 text-end">
+                <a href="{{ route('products.sync') }}" class="btn btn-primary">
+                    <i class="fa fa-sync" style="margin-right: 3px;"></i>
+                    Sync Products
+                </a>
+            </div>
         </div>
     </div>
 @endsection
@@ -26,6 +32,20 @@
                         <div class="mb-3">
                             <label class="form-label">Enter Subscription Amount</label>
                             <input type="number" required step="any" class="form-control" @if($settings) value="{{ $settings->subscription_amount }}" @endif name="subscription_amount" placeholder="Enter the subscription amount">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Enter Wallet Credits</label>
+                            <input type="number" required class="form-control" @if($settings) value="{{ $settings->wallet_credits }}" @endif name="wallet_credits" placeholder="Enter the wallet credits to be assigned on subscription">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Product Discount</label>
+                            <input type="number" step="any" required class="form-control" @if($settings) value="{{ $settings->product_discount }}" @endif name="product_discount" placeholder="Enter the percentage of discount you wants to apply">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Select Subscription Plan</label>
+                            <select name="subscription_plan" class="form-control" id="">
+                                <option value="yearly">Yearly</option>
+                            </select>
                         </div>
                         <div class="mb-3 text-end">
                             <button class="btn btn-primary">Save</button>

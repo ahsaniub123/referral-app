@@ -68,7 +68,7 @@ class RegisterController extends Controller
         $referrer = User::where('referral_token', session()->pull('referrer'))->first();
         $referrer_id = null;
 
-        if($referrer && $referrer->id != 1)
+        if($referrer && $referrer->id != 1 && $referrer->subscription && $referrer->deactive == 0)
             $referrer_id = $referrer->id;
 
         $user =  User::create([
