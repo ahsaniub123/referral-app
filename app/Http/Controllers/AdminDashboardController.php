@@ -82,7 +82,7 @@ class AdminDashboardController extends Controller
 
             $data = [
                 "price_rule" => [
-                    "title" => $settings->product_discount.'PERCENTOFF',
+                    "title" => $settings->product_discount .' PERCENT OFF',
                     "target_type" => "line_item",
                     "target_selection" => "entitled",
                     "allocation_method" => "each",
@@ -120,7 +120,7 @@ class AdminDashboardController extends Controller
         else {
             $data = [
                 "price_rule" => [
-                    "title" => $settings->product_discount.'PERCENTOFF',
+                    "title" => $settings->product_discount .' PERCENT OFF',
                     "value_type" => "percentage",
                     "value" => '-' . $settings->product_discount,
                     'starts_at' => now(),
@@ -132,13 +132,13 @@ class AdminDashboardController extends Controller
 
             $data = [
                 "discount_code" => [
-                    "code" => $settings->product_discount.'PERCENTOFF'
+                    "code" => $settings->product_discount .' PERCENT OFF'
                 ]
             ];
 
             $api->rest('PUT', '/admin/price_rules/'.$settings->price_rule_id.'/discount_codes/'.$settings->discount_id.'.json', $data);
 
-            $settings->discount_code = $settings->product_discount.'PERCENTOFF';
+            $settings->discount_code = $settings->product_discount .' PERCENT OFF';
             $settings->save();
         }
 
