@@ -95,6 +95,7 @@ class AdminDashboardController extends Controller
             ];
 
             $response = $api->rest('POST', '/admin/price_rules.json', $data);
+            dd($response);
             $price_rule = $response['body']['container']['price_rule'];
 
             $data = [
