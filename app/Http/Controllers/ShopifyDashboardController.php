@@ -46,6 +46,9 @@ class ShopifyDashboardController extends Controller
             if (!$response->errors) {
                 $user->shopify_id = $response->body->customer->id;
                 $user->save();
+
+                $response = $api->rest('POST', '/admin/customers/'.$user->shopify_id.'/send_invite.json');
+                dd($response);
             }
         }
 
