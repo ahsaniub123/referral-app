@@ -58,8 +58,6 @@ class ProductsCreateJob implements ShouldQueue
 
         try {
             // Convert domain
-            $this->shopDomain = ShopDomain::fromNative($this->shopDomain);
-
             $shop = User::where('name', $this->shopDomain->toNative())->first();
             $product = json_decode(json_encode($this->data), false);
 
