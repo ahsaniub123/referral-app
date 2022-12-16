@@ -56,7 +56,7 @@ class ProductController extends Controller
                 ]
             ];
 
-            $user->api()->rest('POST', '/admin/price_rules/' . $settings->price_rule_id . '.json', $data);
+            $user->api()->rest('PUT', '/admin/price_rules/' . $settings->price_rule_id . '.json', $data);
         }
 
         return $prod;
