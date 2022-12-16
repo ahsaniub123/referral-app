@@ -141,7 +141,7 @@ class AdminDashboardController extends Controller
             $admin->api()->rest('DELETE', '/admin/customers/'.$user->shopify_id.'.json');
         }
 
-        $user->delete();
+        $user->forceDelete();
 
         return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Deleted Successfully']);
     }
