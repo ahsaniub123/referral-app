@@ -133,7 +133,6 @@ class AdminDashboardController extends Controller
                 $data['price_rule']['starts_at'] = now();
                 $data['price_rule']['ends_at'] = null;
             } else {
-                $data['price_rule']['starts_at'] = null;
                 $data['price_rule']['ends_at'] = now();
             }
 
