@@ -214,7 +214,8 @@ class AdminDashboardController extends Controller
                 ];
             }
 
-            $api->rest('PUT', '/admin/price_rules/' . $setting->price_rule_id . '.json', $data);
+            $res = $api->rest('PUT', '/admin/price_rules/' . $setting->price_rule_id . '.json', $data);
+            dd($res, $data);
         }
 
         return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Status Changed Successfully']);
