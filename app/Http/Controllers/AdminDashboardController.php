@@ -88,11 +88,15 @@ class AdminDashboardController extends Controller
                     "allocation_method" => "each",
                     "value_type" => "percentage",
                     "value" => '-' . $settings->product_discount,
-                    "entitled_product_ids" => $product_ids,
                     "customer_selection"=> "all",
                     'starts_at' => now()
                 ]
             ];
+
+            if(count($product_ids))
+                $data['price_rule']["entitled_product_ids"] = $product_ids;
+            else
+                $data['price_rule']["entitled_collection_ids"] = [263036764209];
 
             $response = $api->rest('POST', '/admin/price_rules.json', $data);
             $price_rule = $response['body']['container']['price_rule'];
