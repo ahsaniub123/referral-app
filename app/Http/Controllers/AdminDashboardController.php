@@ -118,13 +118,16 @@ class AdminDashboardController extends Controller
 
         }
         else {
+
+            $user_ids = User::where('subscription', 1)->where('deactive', 0)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
+
             $data = [
                 "price_rule" => [
                     "title" => $settings->product_discount .' PERCENT OFF',
                     "value_type" => "percentage",
                     "value" => '-' . $settings->product_discount,
-                    'starts_at' => now(),
-                    'ends_at' => null
+                    'starts_at' => count($user_ids) ? now() : null,
+                    'ends_at' => count($user_ids) ? null : now()
                 ]
             ];
 
