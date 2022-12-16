@@ -18,7 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('testing', function () {
-   \App\User::truncate();
+   $user = \App\User::first();
+   $user->forceDelete();
    \App\Setting::truncate();
 });
 
