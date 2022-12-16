@@ -137,8 +137,14 @@ class AdminDashboardController extends Controller
         $user = User::find($id);
 
         if($user->shopify_id) {
-            $admin = User::first();
-            $admin->api()->rest('DELETE', '/admin/customers/'.$user->shopify_id.'.json');
+
+            $shop = User::first();
+            $options = new Options();
+            $options->setVersion('2022-04');
+            $api = new BasicShopifyAPI($options);
+            $api->setSession(new Session($shop->name, $shop->password));
+
+            $api->rest('DELETE', '/admin/customers/'.$user->shopify_id.'.json');
         }
 
         $user->forceDelete();
