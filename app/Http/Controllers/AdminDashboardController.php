@@ -145,6 +145,30 @@ class AdminDashboardController extends Controller
             $api->setSession(new Session($shop->name, $shop->password));
 
             $api->rest('DELETE', '/admin/customers/'.$user->shopify_id.'.json');
+
+            $setting = Setting::first();
+            if($setting && $setting->price_rule_id) {
+                $user_ids = User::where('subscription', 1)->where('deactive', 0)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
+
+                if (count($user_ids)) {
+                    $data = [
+                        "price_rule" => [
+                            "prerequisite_customer_ids" => $user_ids,
+                            "customer_selection" => 'prerequisite'
+                        ]
+                    ];
+                } else {
+                    $data = [
+                        "price_rule" => [
+                            "customer_selection" => "all",
+                            "prerequisite_customer_ids" => [],
+                            "ends_at" => now()
+                        ]
+                    ];
+                }
+
+                $api->rest('PUT', '/admin/price_rules/' . $setting->price_rule_id . '.json', $data);
+            }
         }
 
         $user->forceDelete();
@@ -182,12 +206,12 @@ class AdminDashboardController extends Controller
                     "price_rule" => [
                         "customer_selection" => "all",
                         "prerequisite_customer_ids" => [],
+                        "ends_at" => now()
                     ]
                 ];
             }
 
-            $res = $api->rest('PUT', '/admin/price_rules/' . $setting->price_rule_id . '.json', $data);
-            dd($res, $data);
+            $api->rest('PUT', '/admin/price_rules/' . $setting->price_rule_id . '.json', $data);
         }
 
         return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Status Changed Successfully']);
