@@ -53,6 +53,8 @@ class ProductController extends Controller
             $data = [
                 "price_rule" => [
                     "entitled_product_ids" => $product_ids,
+                    'starts_at' => now(),
+                    'ends_at' => null
                 ]
             ];
 
