@@ -152,6 +152,31 @@ class AdminDashboardController extends Controller
         $user->deactive = !$user->deactive;
         $user->save();
 
+        $setting = Setting::first();
+
+        if($setting && $setting->price_rule_id) {
+
+            $admin = User::first();
+            $user_ids = User::where('subscription', 1)->where('deactive', 0)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
+
+            if (count($user_ids)) {
+                $data = [
+                    "price_rule" => [
+                        "prerequisite_customer_ids" => $user_ids,
+                        "customer_selection" => 'prerequisite'
+                    ]
+                ];
+            } else {
+                $data = [
+                    "price_rule" => [
+                        "customer_selection" => "all",
+                    ]
+                ];
+            }
+
+            $admin->rest()->rest('PUT', '/admin/price_rules/' . $setting->price_rule_id . '.json', $data);
+        }
+
         return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Status Changed Successfully']);
     }
 

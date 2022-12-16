@@ -55,7 +55,7 @@ class ShopifyDashboardController extends Controller
             $user->subscribed_at = null;
             $user->save();
 
-            $user_ids = User::where('subscription', 1)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
+            $user_ids = User::where('subscription', 1)->where('deactive', 0)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
 
             if(count($user_ids)) {
                 $data = [
@@ -145,7 +145,7 @@ class ShopifyDashboardController extends Controller
         $api = new BasicShopifyAPI($options);
         $api->setSession(new Session($shop->name, $shop->password));
 
-        $user_ids = User::where('subscription', 1)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
+        $user_ids = User::where('subscription', 1)->where('deactive', 0)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
 
         if(count($user_ids)) {
             $data = [
