@@ -280,7 +280,7 @@
                             </tr>
                         @empty
                             <tr class="text-center">
-                                <td colspan="6">
+                                <td colspan="9">
                                     No Users yet!
                                 </td>
                             </tr>

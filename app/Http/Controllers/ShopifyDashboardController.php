@@ -93,6 +93,15 @@ class ShopifyDashboardController extends Controller
             $api->rest('POST', '/admin/customers/' . $user->shopify_id . '/metafields.json', [
                 'metafield' => [
                     'namespace' => 'referral_app',
+                    'key' => 'deactive',
+                    'type' => 'boolean',
+                    'value' => $user->deactive
+                ]
+            ]);
+
+            $api->rest('POST', '/admin/customers/' . $user->shopify_id . '/metafields.json', [
+                'metafield' => [
+                    'namespace' => 'referral_app',
                     'key' => 'subscription_end_at',
                     'type' => 'single_line_text_field',
                     'value' => $user->subscription_end_at ? $user->subscription_end_at->toDateString() : 'not subscribed'
