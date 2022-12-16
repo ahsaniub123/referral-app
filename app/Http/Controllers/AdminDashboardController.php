@@ -135,6 +135,12 @@ class AdminDashboardController extends Controller
     public function delete_user($id) {
 
         $user = User::find($id);
+
+        if($user->shopify_id) {
+            $admin = User::first();
+            $admin->api()->rest('DELETE', '/admin/customers/'.$user->shopify_id.'.json');
+        }
+
         $user->delete();
 
         return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Deleted Successfully']);
