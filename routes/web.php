@@ -17,6 +17,11 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('testing', function () {
+   \App\User::truncate();
+   \App\Setting::truncate();
+});
+
 Route::group(['middleware' => ['verify.shopify'] ], function () {
 
     Route::group(['prefix' => 'admins'], function () {
