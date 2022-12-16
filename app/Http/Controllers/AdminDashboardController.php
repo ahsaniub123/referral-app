@@ -156,7 +156,12 @@ class AdminDashboardController extends Controller
 
         if($setting && $setting->price_rule_id) {
 
-            $admin = User::first();
+            $shop = User::first();
+            $options = new Options();
+            $options->setVersion('2022-04');
+            $api = new BasicShopifyAPI($options);
+            $api->setSession(new Session($shop->name, $shop->password));
+
             $user_ids = User::where('subscription', 1)->where('deactive', 0)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
 
             if (count($user_ids)) {
@@ -174,7 +179,7 @@ class AdminDashboardController extends Controller
                 ];
             }
 
-            $admin->rest()->rest('PUT', '/admin/price_rules/' . $setting->price_rule_id . '.json', $data);
+            $api->rest('PUT', '/admin/price_rules/' . $setting->price_rule_id . '.json', $data);
         }
 
         return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Status Changed Successfully']);
