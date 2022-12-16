@@ -95,13 +95,13 @@ class ShopifyDashboardController extends Controller
                 ]
             ]);
 
-            if ($setting->subscription_amount) {
+            if ($setting->product_discount) {
                 $api->rest('POST', '/admin/customers/' . $user->shopify_id . '/metafields.json', [
                     'metafield' => [
                         'namespace' => 'referral_app',
                         'key' => 'discount_on_products',
                         'type' => 'number_integer',
-                        'value' => $setting->subscription_amount
+                        'value' => $setting->product_discount
                     ]
                 ]);
             }
