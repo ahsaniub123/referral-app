@@ -18,8 +18,9 @@ Route::get('/', function () {
 });
 
 Route::get('testing', function () {
-   $user = \App\User::first();
-   $user->forceDelete();
+   foreach (\App\User::get() as $user)
+        $user->forceDelete();
+
    \App\Setting::truncate();
 });
 
