@@ -56,3 +56,6 @@ Route::group([
     Route::post('/generate-discount-code', 'ShopifyDashboardController@generateDiscountCode')->name('generate.discount.code');
 
 });
+
+
+Route::get('/handle-discount', 'WidgetController@index');
