@@ -42,6 +42,10 @@
                             <input type="number" step="any" required class="form-control" @if($settings) value="{{ $settings->product_discount }}" @endif name="product_discount" placeholder="Enter the percentage of discount you wants to apply">
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Subscription Text</label>
+                            <textarea name="subscription_text" class="form-control" id="" cols="30" rows="10">@if($settings){!! $settings->subscription_text !!}@endif</textarea>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Select Subscription Plan</label>
                             <select name="subscription_plan" class="form-control" id="">
                                 <option value="yearly">Yearly</option>

@@ -69,6 +69,7 @@ class AdminDashboardController extends Controller
         $settings->subscription_plan = $request->subscription_plan;
         $settings->wallet_credits = $request->wallet_credits;
         $settings->product_discount = $request->product_discount;
+        $settings->subscription_text = $request->subscription_text;
         $settings->save();
 
         $shop = User::first();
