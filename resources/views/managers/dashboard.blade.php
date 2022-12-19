@@ -119,7 +119,7 @@
             </div>
             @endif
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body p-2 text-center">
                         <div class="h1 m-0">{{ $user->referrals()->count() }}</div>
@@ -128,7 +128,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="card">
                     <div class="card-body p-2 text-center">
                         <div class="h1 m-0">
@@ -143,11 +143,20 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body p-2 text-center">
                         <div class="h1 m-0">{{ $user->wallet_logs()->count() }}</div>
                         <div class="text-muted mb-3">Discount Codes</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body p-2 text-center">
+                        <div class="h1 m-0">{{ $user->subscription_end_at->toDateString() }}</div>
+                        <div class="text-muted mb-3">Subscription Ends On</div>
                     </div>
                 </div>
             </div>
