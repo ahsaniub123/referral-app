@@ -49,7 +49,16 @@
             @if(!$user->subscription)
                 <div class="col-md-12">
                     <div class="alert alert-success d-flex justify-content-between align-items-center">
-                        <span class="alert-title">{!! $setting->subscription_text !!}</span>
+                        <span class="alert-title">
+                            @php
+                                $subscription_history = $user->subscription_history()->whereNotNull('ended_at')->first();
+                            @endphp
+                            @if($subscription_history)
+                                Dear customer, your subscription has ended on {{ $subscription_history->ended_at->toDateString() }}, please re-subscribe to <strong>{!! $setting->subscription_text !!}</strong>
+                            @else
+                                {!! $setting->subscription_text !!}
+                            @endif
+                        </span>
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-subscribe">Subscribe now</button>
 
                         <div class="modal modal-blur fade" id="modal-subscribe" tabindex="-1" role="dialog" aria-hidden="true">

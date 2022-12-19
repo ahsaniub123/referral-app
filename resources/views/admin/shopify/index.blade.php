@@ -202,7 +202,7 @@
 
                                     @if($subscription_history_count)
                                         <span style="text-decoration: underline; cursor:pointer;" class="text-primary" data-bs-toggle="modal" data-bs-target="#user-history-{{ $shopify_user->id }}">
-                                            {{ $subscription_history_count }}
+                                            View
                                         </span>
                                         <div class="modal modal-blur fade" id="user-history-{{ $shopify_user->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered" style="text-align: left;" role="document">
