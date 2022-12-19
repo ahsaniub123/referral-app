@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Setting;
+use App\SubscriptionHistory;
 use App\User;
 use App\Wallet;
 use App\WalletLog;
@@ -56,6 +57,12 @@ class ShopifyDashboardController extends Controller
             $user->subscription_end_at = null;
             $user->subscribed_at = null;
             $user->save();
+
+            $subscription_history = new SubscriptionHistory();
+            $subscription_history->message = 'Subscription has been ended on '.now()->format('d M, Y h:i a');
+            $subscription_history->ended_at = now();
+            $subscription_history->user_id = $user->id;
+            $subscription_history->save();
 
             $user_ids = User::where('subscription', 1)->where('deactive', 0)->whereNotNull('shopify_id')->pluck('shopify_id')->toArray();
 
@@ -148,6 +155,12 @@ class ShopifyDashboardController extends Controller
         $user->subscription_end_at = now()->addYear();
         $user->subscription_plan = $setting->subscription_plan;
         $user->save();
+
+        $subscription_history = new SubscriptionHistory();
+        $subscription_history->message = 'Subscription has been purchased on '.now()->format('d M, Y h:i a');
+        $subscription_history->start_at = now();
+        $subscription_history->user_id = $user->id;
+        $subscription_history->save();
 
         if($referrer = $user->referrer) {
             $referrer->wallet_credit += $setting->wallet_credits;

@@ -22,7 +22,7 @@
 
             <div class="card">
                 <div class="table-responsive">
-                    <table class="table table-vcenter card-table table-striped">
+                    <table class="table-responsive table table-vcenter card-table table-striped">
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -31,9 +31,10 @@
                             <th class="text-center">Discount Codes</th>
                             <th class="text-center">Subscription</th>
                             <th class="text-center">Date Joined</th>
+                            <th class="text-center">Subscription History</th>
                             <th class="text-center">Wallet Credits</th>
                             <th class="text-center">Wallet Credits Used</th>
-                            <th>Actions</th>
+                            <th class="text-end">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -193,6 +194,52 @@
                                 </td>
                                 <td class="text-center">
                                     {{ $shopify_user->created_at->toDateString() }}
+                                </td>
+                                <td class="text-center">
+                                    @php
+                                        $subscription_history_count = $shopify_user->subscription_history()->count();
+                                    @endphp
+
+                                    @if($subscription_history_count)
+                                        <span style="text-decoration: underline; cursor:pointer;" class="text-primary" data-bs-toggle="modal" data-bs-target="#user-history-{{ $shopify_user->id }}">
+                                            {{ $subscription_history_count }}
+                                        </span>
+                                        <div class="modal modal-blur fade" id="user-history-{{ $shopify_user->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered" style="text-align: left;" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Subscription History</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table class="table table-striped table-bordered">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Details</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @foreach($shopify_user->subscription_history()->latest()->get() as $subscription_history)
+                                                                <tr>
+                                                                    <td>
+                                                                        {{ $subscription_history->message }}
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                                                            Close
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        None
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     @if($shopify_user->wallet_credit)

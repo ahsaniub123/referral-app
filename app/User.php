@@ -88,4 +88,8 @@ class User extends Authenticatable implements IShopModel
     public function wallet_logs() {
         return $this->hasMany(WalletLog::class, 'user_id');
     }
+
+    public function subscription_history() {
+        return $this->hasMany(SubscriptionHistory::class, 'user_id');
+    }
 }
