@@ -49,7 +49,7 @@
             @if(!$user->subscription)
                 <div class="col-md-12">
                     <div class="alert alert-success d-flex justify-content-between align-items-center">
-                        <span class="alert-title">{!! $settings->subscription_text !!}</span>
+                        <span class="alert-title">{!! $setting->subscription_text !!}</span>
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-subscribe">Subscribe now</button>
 
                         <div class="modal modal-blur fade" id="modal-subscribe" tabindex="-1" role="dialog" aria-hidden="true">
@@ -57,7 +57,7 @@
                                 <form class="modal-content" action="{{ route('shopify.subscription.complete') }}" method="post" id="payment-form">
                                     @csrf
                                     <div class="modal-header">
-                                        <h5 class="modal-title">{!! $settings->subscription_text !!}</h5>
+                                        <h5 class="modal-title">{!! $setting->subscription_text !!}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
