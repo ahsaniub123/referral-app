@@ -155,7 +155,13 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body p-2 text-center">
-                        <div class="h1 m-0">{{ $user->subscription_end_at->toDateString() }}</div>
+                        <div class="h1 m-0">
+                            @if($user->subscription_end_at)
+                                {{ $user->subscription_end_at->toDateString() }}
+                            @else
+                                Not Subscribed Yet!
+                            @endif
+                        </div>
                         <div class="text-muted mb-3">Subscription Ends On</div>
                     </div>
                 </div>
