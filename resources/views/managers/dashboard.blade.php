@@ -159,7 +159,7 @@
                             @if($user->subscription_end_at)
                                 {{ $user->subscription_end_at->toDateString() }}
                             @else
-                                <span style="font-size: 14px; font-weight: bold;">Not Subscribed Yet!</span>
+                                <span style="font-size: 18px; font-weight: bold;">Not Subscribed Yet!</span>
                             @endif
                         </div>
                         <div class="text-muted mb-3">Subscription Ends On</div>

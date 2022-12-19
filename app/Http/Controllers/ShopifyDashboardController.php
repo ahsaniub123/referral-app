@@ -158,7 +158,7 @@ class ShopifyDashboardController extends Controller
 
         $subscription_history = new SubscriptionHistory();
         $subscription_history->message = 'Subscription has been purchased on '.now()->format('d M, Y h:i a');
-        $subscription_history->start_at = now();
+        $subscription_history->started_at = now();
         $subscription_history->user_id = $user->id;
         $subscription_history->save();
 
