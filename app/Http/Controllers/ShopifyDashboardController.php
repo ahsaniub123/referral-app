@@ -254,7 +254,7 @@ class ShopifyDashboardController extends Controller
                 "allocation_method"=> "across",
                 "value_type"=> "fixed_amount",
                 "value"=> '-'.$request->credit,
-                "prerequisite_customer_ids" => $user->shopify_id,
+                "prerequisite_customer_ids" => [$user->shopify_id],
                 "customer_selection" => 'prerequisite',
                 "once_per_customer"=> true,
                 'starts_at'=> now()
