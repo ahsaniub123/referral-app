@@ -1,7 +1,11 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Osiset\BasicShopifyAPI\BasicShopifyAPI;
+use Osiset\BasicShopifyAPI\Options;
+use Osiset\BasicShopifyAPI\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +66,19 @@ Route::get('/handle-discount', 'WidgetController@index');
 
 Route::post('/shopify-register', 'HelperController@register');
 Route::post('/shopify-login', 'HelperController@login');
+
+Route::get('discount-testing', function () {
+    $shop = User::first();
+    $options = new Options();
+    $options->setVersion('2022-04');
+    $api = new BasicShopifyAPI($options);
+    $api->setSession(new Session($shop->name, $shop->password));
+
+    $log = \App\WalletLog::latest()->first();
+
+    $response = $api->rest('GET', '/admin/price_rules/'.$log->price_rule_id.'.json');
+
+    $response = json_decode(json_encode($response));
+
+    dd($response->body->price_rule);
+});

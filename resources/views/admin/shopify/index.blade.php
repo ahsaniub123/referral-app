@@ -31,6 +31,7 @@
                             <th class="text-center">Discount Codes</th>
                             <th class="text-center">Subscription</th>
                             <th class="text-center">Date Joined</th>
+                            <th class="text-center">Subscription Ends On</th>
                             <th class="text-center">Subscription History</th>
                             <th class="text-center">Wallet Credits</th>
                             <th class="text-center">Wallet Credits Used</th>
@@ -189,11 +190,25 @@
                                     @if($shopify_user->subscription)
                                         <span class="badge bg-success">Completed</span>
                                     @else
-                                        <span class="badge bg-danger">Not Completed</span>
+                                        @php
+                                            $subscription_history = $shopify_user->subscription_history()->whereNotNull('ended_at')->first();
+                                        @endphp
+                                        @if($subscription_history)
+                                            <span class="badge bg-danger">Expired</span>
+                                        @else
+                                            <span class="badge bg-warning">Not Completed</span>
+                                        @endif
                                     @endif
                                 </td>
                                 <td class="text-center">
                                     {{ $shopify_user->created_at->toDateString() }}
+                                </td>
+                                <td class="text-center">
+                                    @if($shopify_user->subscription_end_at)
+                                        {{ $shopify_user->subscription_end_at->toDateString() }}
+                                    @else
+                                        Not Subscribed
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     @php

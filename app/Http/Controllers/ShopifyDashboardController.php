@@ -254,7 +254,8 @@ class ShopifyDashboardController extends Controller
                 "allocation_method"=> "across",
                 "value_type"=> "fixed_amount",
                 "value"=> '-'.$request->credit,
-                "customer_selection"=> "all",
+                "prerequisite_customer_ids" => $user->shopify_id,
+                "customer_selection" => 'prerequisite',
                 "once_per_customer"=> true,
                 'starts_at'=> now()
             ]
@@ -281,6 +282,7 @@ class ShopifyDashboardController extends Controller
         $wallet_log = new WalletLog();
         $wallet_log->discount_code = $discount_code;
         $wallet_log->user_id = $user->id;
+        $wallet_log->price_rule_id = $price_rule['id'];
         $wallet_log->message = 'A Discount Code '. $discount_code .' is been generated for an amount of '. $request->credit .' on '. now()->format('d M, Y h:i a');
         $wallet_log->save();
 
