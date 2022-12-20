@@ -205,15 +205,13 @@
                                             @if($referral->subscription)
                                                 <span class="badge bg-success">Completed</span>
                                             @else
+                                                @php
+                                                    $referral_subscription_history = $referral->subscription_history()->whereNotNull('ended_at')->first();
+                                                @endphp
+                                                @if($referral_subscription_history)
+                                                    <span class="badge bg-danger">Expired</span>
                                                 @else
-                                                    @php
-                                                        $referral_subscription_history = $referral->subscription_history()->whereNotNull('ended_at')->first();
-                                                    @endphp
-                                                    @if($referral_subscription_history)
-                                                        <span class="badge bg-danger">Expired</span>
-                                                    @else
-                                                        <span class="badge bg-warning">Not Completed</span>
-                                                    @endif
+                                                    <span class="badge bg-warning">Not Completed</span>
                                                 @endif
                                             @endif
                                         </td>
