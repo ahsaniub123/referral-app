@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'My Blog') }}</title>
+    <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0550/4060/6257/files/21spiritad.jpg?v=1671564865" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
