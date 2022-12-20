@@ -12,7 +12,10 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>{{ env('APP_NAME') }}</title>
+    <title>21 Spirit Premium</title>
+    <meta property="og:title" content="21 Spirit Premium" />
+    <meta property="og:url" content="https://account.21spirit.com/register" />
+    <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0550/4060/6257/files/21spiritad.jpg?v=1671564865"/>
     <!-- CSS files -->
     <link href="{{ asset('admin/css/tabler.min.css') }}" rel="stylesheet"/>
     <link href={{ asset('admin/css/tabler-vendors.min.css') }} rel="stylesheet"/>

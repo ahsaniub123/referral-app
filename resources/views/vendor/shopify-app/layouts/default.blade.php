@@ -3,10 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>21 Spirit Premium</title>
-        <meta property="og:title" content="21 Spirit Premium" />
-        <meta property="og:url" content="https://account.21spirit.com/register" />
-        <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0550/4060/6257/files/21spiritad.jpg?v=1671564865"/>
+
+        <title>{{ \Osiset\ShopifyApp\Util::getShopifyConfig('app_name') }}</title>
         <link href="{{ asset('admin/css/tabler.min.css') }}" rel="stylesheet"/>
         <link href={{ asset('admin/css/tabler-vendors.min.css') }} rel="stylesheet"/>
         <link href="{{ asset('admin/css/demo.min.css') }}" rel="stylesheet"/>
