@@ -106,6 +106,7 @@
                                 <tr>
                                     <th>Discount Code</th>
                                     <th>Details</th>
+                                    <th>Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -124,6 +125,39 @@
                                         </td>
                                         <td>
                                             {{ $log->message }}
+                                        </td>
+                                        <td>
+                                            @php
+                                                $shop = \App\User::first();
+                                                $options = new \Osiset\BasicShopifyAPI\Options();
+                                                $options->setVersion('2022-04');
+                                                $api = new \Osiset\BasicShopifyAPI\BasicShopifyAPI($options);
+                                                $api->setSession(new \Osiset\BasicShopifyAPI\Session($shop->name, $shop->password));
+                                                $status = null;
+
+                                                if($log->price_rule_id) {
+                                                    $response = $api->rest('GET', '/admin/price_rules/'.$log->price_rule_id.'.json');
+                                                    $response = json_decode(json_encode($response));
+
+                                                    if(!$response->errors) {
+                                                        if($response->body->price_rule->ends_at)
+                                                            $status = 'Expired';
+                                                        else
+                                                            $status = 'Active';
+                                                    }
+
+                                                }
+                                            @endphp
+
+                                            @if($status)
+                                                @if($status == 'Expired')
+                                                    <span class="badge bg-danger">Expired</span>
+                                                @else
+                                                    <span class="badge bg-success">Active</span>
+                                                @endif
+                                            @else
+                                                No Status
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
