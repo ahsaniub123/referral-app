@@ -75,7 +75,7 @@ class AdminDashboardController extends Controller
 
         foreach ($request->plan_id as $index => $plan_id) {
             $plan = SubscriptionPlan::find($plan_id);
-            $plan->price = $request->plan_pricep[$index];
+            $plan->price = $request->plan_price[$index];
             $plan->save();
         }
 
