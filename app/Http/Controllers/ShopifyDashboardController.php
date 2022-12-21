@@ -160,10 +160,14 @@ class ShopifyDashboardController extends Controller
         $user->subscription = 1;
         $user->subscribed_at = now();
 
-        if($subscription_plan->name == 'Yearly')
+        if($subscription_plan->name == 'Yearly') {
+            $user->subscription_plan = 'Yearly';
             $user->subscription_end_at = now()->addYear();
-        else
+        }
+        else {
             $user->subscription_end_at = now()->addMonth();
+            $user->subscription_plan = 'Monthly';
+        }
 
         $user->save();
 
