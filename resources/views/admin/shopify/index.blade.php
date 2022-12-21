@@ -205,7 +205,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if($shopify_user->subscription_end_at)
-                                        {{ $shopify_user->subscription_end_at->toDateString() }}
+                                        {{ $shopify_user->subscription_end_at->toDateString() }} ({{ $shopify_user->subscription_plan }})
                                     @else
                                         Not Subscribed
                                     @endif
