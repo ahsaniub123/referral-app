@@ -80,7 +80,7 @@
                                         <br>
 
                                         <div class="form-group">
-                                            <label for="">Subscription Plans</label>
+                                            <label class="form-label" for="">Subscription Plans</label>
                                             <select name="plan_id" class="js-plan-select form-control" id="">
                                                 @foreach($subscription_plans as $subscription_plan)
                                                     <option value="{{ $subscription_plan->id }}">{{ $subscription_plan->name }} - {{ $subscription_plan->price }}$</option>
