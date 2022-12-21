@@ -188,7 +188,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if($shopify_user->subscription)
-                                        <span class="badge bg-success">Completed</span>
+                                        <span class="badge bg-success">Subscribed</span>
                                     @else
                                         @php
                                             $subscription_history = $shopify_user->subscription_history()->whereNotNull('ended_at')->first();
@@ -196,7 +196,7 @@
                                         @if($subscription_history)
                                             <span class="badge bg-danger">Expired</span>
                                         @else
-                                            <span class="badge bg-warning">Not Completed</span>
+                                            <span class="badge bg-warning">Unsubscribed</span>
                                         @endif
                                     @endif
                                 </td>

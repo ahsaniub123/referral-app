@@ -70,14 +70,6 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="form-inline">
-                                        <label class="form-label" for="cardholder-name">Cardholder's Name</label>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" id="cardholder-name" class="form-control">
-                                            </div>
-                                        </div>
-                                        <br>
 
                                         <div class="form-group">
                                             <label class="form-label" for="">Subscription Plans</label>
@@ -87,6 +79,15 @@
                                                 @endforeach
                                             </select>
                                         </div>
+
+                                        <div class="form-inline">
+                                        <label class="form-label" for="cardholder-name">Cardholder's Name</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="cardholder-name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <br>
 
                                         <div class="form-inline my-2">
                                             <label class="form-label" for="card-element">Credit or debit card</label>
@@ -212,7 +213,7 @@
                                         </td>
                                         <td>
                                             @if($referral->subscription)
-                                                <span class="badge bg-success">Completed</span>
+                                                <span class="badge bg-success">Subscribed</span>
                                             @else
                                                 @php
                                                     $referral_subscription_history = $referral->subscription_history()->whereNotNull('ended_at')->first();
@@ -220,7 +221,7 @@
                                                 @if($referral_subscription_history)
                                                     <span class="badge bg-danger">Expired</span>
                                                 @else
-                                                    <span class="badge bg-warning">Not Completed</span>
+                                                    <span class="badge bg-warning">Unsubscribed</span>
                                                 @endif
                                             @endif
                                         </td>
