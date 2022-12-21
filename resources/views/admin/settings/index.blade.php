@@ -29,10 +29,10 @@
                 <div class="card-body">
                     <form action="{{ route('settings.save') }}" method="POST">
                         @sessionToken
-                        <div class="mb-3">
-                            <label class="form-label">Enter Subscription Amount</label>
-                            <input type="number" required step="any" class="form-control" @if($settings) value="{{ $settings->subscription_amount }}" @endif name="subscription_amount" placeholder="Enter the subscription amount">
-                        </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Enter Subscription Amount</label>--}}
+{{--                            <input type="number" required step="any" class="form-control" @if($settings) value="{{ $settings->subscription_amount }}" @endif name="subscription_amount" placeholder="Enter the subscription amount">--}}
+{{--                        </div>--}}
                         <div class="mb-3">
                             <label class="form-label">Enter Wallet Credits</label>
                             <input type="number" required class="form-control" @if($settings) value="{{ $settings->wallet_credits }}" @endif name="wallet_credits" placeholder="Enter the wallet credits to be assigned on subscription">
@@ -45,11 +45,35 @@
                             <label class="form-label">Subscription Text</label>
                             <textarea name="subscription_text" class="form-control" id="" cols="30" rows="10">@if($settings){!! $settings->subscription_text !!}@endif</textarea>
                         </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="form-label">Select Subscription Plan</label>--}}
+{{--                            <select name="subscription_plan" class="form-control" id="">--}}
+{{--                                <option value="yearly">Yearly</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
                         <div class="mb-3">
-                            <label class="form-label">Select Subscription Plan</label>
-                            <select name="subscription_plan" class="form-control" id="">
-                                <option value="yearly">Yearly</option>
-                            </select>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Plan</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $subscription_plans = \App\SubscriptionPlan::all();
+                                    @endphp
+                                    @foreach($subscription_plans as $subscription_plan)
+                                        <tr>
+                                            <td>{{ $subscription_plan->name }}</td>
+                                            <td>
+                                                <input type="hidden" name="plan_id[]" value="{{ $subscription_plan->id }}">
+                                                <input type="number" step="any" name="plan_price[]" value="{{ $subscription_plan->price }}">
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                         <div class="mb-3 text-end">
                             <button class="btn btn-primary">Save</button>

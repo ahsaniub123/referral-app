@@ -231,6 +231,7 @@
                                                             <thead>
                                                             <tr>
                                                                 <th>Details</th>
+                                                                <th>Plan</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -238,6 +239,9 @@
                                                                 <tr>
                                                                     <td>
                                                                         {{ $subscription_history->message }}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{ $subscription_history->subscription_plan->name }}
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

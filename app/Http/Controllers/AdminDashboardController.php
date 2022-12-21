@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Setting;
+use App\SubscriptionPlan;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,12 +66,18 @@ class AdminDashboardController extends Controller
         if($settings == null)
             $settings = new Setting();
 
-        $settings->subscription_amount = $request->subscription_amount;
-        $settings->subscription_plan = $request->subscription_plan;
+        //$settings->subscription_amount = $request->subscription_amount;
+        //$settings->subscription_plan = $request->subscription_plan;
         $settings->wallet_credits = $request->wallet_credits;
         $settings->product_discount = $request->product_discount;
         $settings->subscription_text = $request->subscription_text;
         $settings->save();
+
+        foreach ($request->plan_id as $index => $plan_id) {
+            $plan = SubscriptionPlan::find($plan_id);
+            $plan->price = $request->plan_pricep[$index];
+            $plan->save();
+        }
 
         $shop = User::first();
         $options = new Options();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Setting;
 use App\SubscriptionHistory;
+use App\SubscriptionPlan;
 use App\User;
 use App\Wallet;
 use App\WalletLog;
@@ -22,6 +23,7 @@ class ShopifyDashboardController extends Controller
         $user = Auth::user();
         $setting = Setting::first();
         $admin = User::first();
+        $subscription_plans = SubscriptionPlan::all();
         $options = new Options();
         $options->setVersion('2022-04');
         $api = new BasicShopifyAPI($options);
@@ -131,16 +133,21 @@ class ShopifyDashboardController extends Controller
 
         return view('managers.dashboard')->with([
             'user' => $user,
-            'setting' => $setting
+            'setting' => $setting,
+            'subscription_plans' => $subscription_plans
         ]);
     }
 
     public function markSubscriptionAsComplete(Request $request) {
 
+        dd($request->all());
+
         $user = Auth::user();
         $setting = Setting::first();
 
-        $amount_to_be_paid = $setting->subscription_amount * 100;
+        $subscription_plan = SubscriptionPlan::find($request->plan_id);
+
+        $amount_to_be_paid = $subscription_plan->price * 100;
         $amount_to_be_paid = (int) $amount_to_be_paid;
 
         try {
@@ -152,14 +159,19 @@ class ShopifyDashboardController extends Controller
 
         $user->subscription = 1;
         $user->subscribed_at = now();
-        $user->subscription_end_at = now()->addYear();
-        $user->subscription_plan = $setting->subscription_plan;
+
+        if($subscription_plan->name == 'Yearly')
+            $user->subscription_end_at = now()->addYear();
+        else
+            $user->subscription_end_at = now()->addMonth();
+
         $user->save();
 
         $subscription_history = new SubscriptionHistory();
         $subscription_history->message = 'Subscription has been purchased on '.now()->format('d M, Y h:i a');
         $subscription_history->started_at = now();
         $subscription_history->user_id = $user->id;
+        $subscription_history->subscription_plan_id = $subscription_plan->id;
         $subscription_history->save();
 
         if($referrer = $user->referrer) {

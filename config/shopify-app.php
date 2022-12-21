@@ -350,6 +350,10 @@ return [
             'address' => 'https://account.21spirit.com/webhook/customers-delete'
         ],
         [
+            'topic' => 'CUSTOMERS_CREATE',
+            'address' => 'https://account.21spirit.com/webhook/customers-create'
+        ],
+        [
             'topic' => 'PRODUCTS_DELETE',
             'address' => 'https://account.21spirit.com/webhook/products-delete'
         ]
