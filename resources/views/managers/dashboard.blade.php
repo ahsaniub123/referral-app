@@ -79,6 +79,15 @@
                                         </div>
                                         <br>
 
+                                        <div class="form-group">
+                                            <label for="">Subscription Plans</label>
+                                            <select name="plan_id" class="js-plan-select form-control" id="">
+                                                @foreach($subscription_plans as $subscription_plan)
+                                                    <option value="{{ $subscription_plan->id }}">{{ $subscription_plan->name }} - {{ $subscription_plan->price }}$</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
                                         <div class="form-inline my-2">
                                             <label class="form-label" for="card-element">Credit or debit card</label>
                                         </div>
@@ -94,9 +103,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <div class="text-end mt-3">
-                                            @foreach($subscription_plans as $subscription_plan)
-                                                <button type="submit" id="pay-btn" class="btn btn-success waves-effect pay-btn" data-plan-id="{{ $subscription_plan->id }}">{{ $subscription_plan->name }} Subscription - {{ $subscription_plan->price }}$</button>
-                                            @endforeach
+                                            <button type="submit" id="pay-btn" class="btn btn-success waves-effect pay-btn">Pay now</button>
                                         </div>
                                     </div>
                                 </form>
@@ -305,7 +312,7 @@
             // Insert the token ID into the form so it gets submitted to the server
             var payBtn = document.getElementById('pay-btn');
             var form = document.getElementById('payment-form');
-            var plan_id = $(payBtn).data('plan-id');
+
             var hiddenInput = document.createElement('input');
             var hiddenPlanInput = document.createElement('input');
 
@@ -315,13 +322,7 @@
             hiddenInput.setAttribute('name', 'paymentMethod');
             hiddenInput.setAttribute('value', paymentMethod.id);
 
-            hiddenPlanInput.setAttribute('type', 'hidden');
-            hiddenPlanInput.setAttribute('name', 'plan_id');
-            hiddenPlanInput.setAttribute('value', plan_id);
-
-
             form.appendChild(hiddenInput);
-            form.appendChild(hiddenPlanInput);
             // Submit the form
             form.submit();
         }
