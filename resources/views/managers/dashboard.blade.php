@@ -197,7 +197,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($user->referrals()->latest()->limit(5)->get() as $referral)
+                                @forelse($user->referrals()->latest()->limit(500)->get() as $referral)
                                     <tr>
                                         <td>
                                             <div class="d-flex py-1 align-items-center">
