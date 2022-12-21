@@ -7,7 +7,7 @@
             <a href="">
                 <img src="https://cdn.shopify.com/s/files/1/0550/4060/6257/files/21.png?v=1665085801" width="110" height="32" alt="Tabler" class="navbar-brand-image">
             </a>
-            <span class="font-weight-medium mx-2 text-muted">{{ env('APP_NAME') }}</span>
+            <span class="font-weight-medium mx-2 text-muted">{{ env('APP_NAME') }} Premium</span>
         </h1>
         <div class="navbar-nav flex-row order-md-last">
             <div class="nav-item dropdown d-none d-md-flex me-3">
