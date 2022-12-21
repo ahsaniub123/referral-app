@@ -241,7 +241,11 @@
                                                                         {{ $subscription_history->message }}
                                                                     </td>
                                                                     <td>
-                                                                        {{ $subscription_history->subscription_plan->name }}
+                                                                        @if($subscription_history->subscription_plan)
+                                                                            {{ $subscription_history->subscription_plan->name }}
+                                                                        @else
+                                                                            None
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
