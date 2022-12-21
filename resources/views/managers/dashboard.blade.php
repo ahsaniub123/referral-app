@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <div class="form-group">
+                                        <div class="form-inline">
                                             <label class="form-label" for="">Subscription Plans</label>
                                             <select name="plan_id" class="js-plan-select form-control" id="">
                                                 @foreach($subscription_plans as $subscription_plan)
@@ -79,7 +79,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
+                                        <br>
                                         <div class="form-inline">
                                         <label class="form-label" for="cardholder-name">Cardholder's Name</label>
                                         <div class="form-group">
