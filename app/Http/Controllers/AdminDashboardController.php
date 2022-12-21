@@ -204,6 +204,9 @@ class AdminDashboardController extends Controller
                 $api->rest('PUT', '/admin/price_rules/' . $setting->price_rule_id . '.json', $data);
             }
         }
+        else {
+            $user->forceDelete();
+        }
 
         return Redirect::tokenRedirect('shopify.index', ['notice' => 'User Deleted Successfully']);
     }
