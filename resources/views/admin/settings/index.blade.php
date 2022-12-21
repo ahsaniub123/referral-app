@@ -68,7 +68,7 @@
                                             <td>{{ $subscription_plan->name }}</td>
                                             <td>
                                                 <input type="hidden" name="plan_id[]" value="{{ $subscription_plan->id }}">
-                                                <input type="number" step="any" name="plan_price[]" value="{{ $subscription_plan->price }}">
+                                                <input class="form-control" type="number" step="any" name="plan_price[]" value="{{ $subscription_plan->price }}">
                                             </td>
                                         </tr>
                                     @endforeach
