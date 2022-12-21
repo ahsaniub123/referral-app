@@ -140,8 +140,6 @@ class ShopifyDashboardController extends Controller
 
     public function markSubscriptionAsComplete(Request $request) {
 
-        dd($request->all());
-
         $user = Auth::user();
         $setting = Setting::first();
 
