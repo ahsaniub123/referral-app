@@ -34,11 +34,11 @@
 {{--                            <input type="number" required step="any" class="form-control" @if($settings) value="{{ $settings->subscription_amount }}" @endif name="subscription_amount" placeholder="Enter the subscription amount">--}}
 {{--                        </div>--}}
                         <div class="mb-3">
-                            <label class="form-label">Enter Wallet Credits</label>
+                            <label class="form-label">Enter Wallet Credits Reward($)</label>
                             <input type="number" required class="form-control" @if($settings) value="{{ $settings->wallet_credits }}" @endif name="wallet_credits" placeholder="Enter the wallet credits to be assigned on subscription">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Product Discount</label>
+                            <label class="form-label">Product Discount(%)</label>
                             <input type="number" step="any" required class="form-control" @if($settings) value="{{ $settings->product_discount }}" @endif name="product_discount" placeholder="Enter the percentage of discount you wants to apply">
                         </div>
                         <div class="mb-3">
@@ -56,7 +56,7 @@
                                 <thead>
                                     <tr>
                                         <th>Plan</th>
-                                        <th>Price</th>
+                                        <th>Price($)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
