@@ -29,11 +29,11 @@
             $('#import-form').submit();
         });
 
-        $('select').each(function () {
-            $(this).select2({
-                dropdownParent: $(this).parent(),
-                width: "100%",
-            });
-        });
+        // $('select').each(function () {
+        //     $(this).select2({
+        //         dropdownParent: $(this).parent(),
+        //         width: "100%",
+        //     });
+        // });
     });
 </script>
