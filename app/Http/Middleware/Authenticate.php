@@ -15,8 +15,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            /* return route('login'); */
-            return 'https://www.21spirit.com/account/logout';
+            return route('login'); 
         }
     }
 }
