@@ -75,6 +75,8 @@ Route::get('trigger-login/{id}', function ($id) {
     return redirect()->route('shopify.home');
 });
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Route::get('customer-webhook', function () {
     $shop = User::first();
     $options = new Options();
