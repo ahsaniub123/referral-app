@@ -74,3 +74,21 @@ Route::get('trigger-login/{id}', function ($id) {
 
     return redirect()->route('shopify.home');
 });
+
+Route::get('customer-webhook', function () {
+    $shop = User::first();
+    $options = new Options();
+    $options->setVersion('2022-04');
+    $api = new BasicShopifyAPI($options);
+    $api->setSession(new Session($shop->name, $shop->password));
+
+    $response = $api->rest('POST', '/admin/webhooks.json', [
+        'webhook' => [
+            'topic' => 'CUSTOMERS_CREATE',
+            'address' => 'https://account.21spirit.com/webhook/customers-create'
+        ]
+    ]);
+
+    $response = json_decode(json_encode($response));
+    dd($response);
+});
