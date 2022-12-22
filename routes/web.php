@@ -62,7 +62,7 @@ Route::group([
 
 });
 
-Route::get('/handle-discount', 'WidgetController@index');
+//Route::get('/handle-discount', 'WidgetController@index');
 
 Route::post('/shopify-register', 'HelperController@register');
 Route::post('/shopify-login', 'HelperController@login');
