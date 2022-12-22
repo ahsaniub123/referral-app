@@ -61,10 +61,10 @@ class HelperController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if(!$user)
-            return response()->json(['status' => 'error', 'errors' => [ 'email' => 'The email provided do not exists']]);
+            return response()->json(['status' => 'error', 'errors' => [ 'email' => 'The email provided do not exists.']]);
 
         if (!Hash::check($request->password, $user->password))
-            return response()->json(['status' => 'error', 'errors' => [ 'password' => 'The credentials are not correct']]);
+            return response()->json(['status' => 'error', 'errors' => [ 'password' => 'These credentials do not match our records.']]);
 
         Auth::login($user);
 
