@@ -26,8 +26,10 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
+    /*
+     protected $redirectTo = RouteServiceProvider::HOME;
+    */
+    protected $redirectTo = 'https://www.21spirit.com/account/logout';
     /**
      * Create a new controller instance.
      *
