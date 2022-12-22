@@ -122,9 +122,9 @@
                     <span class="alert-title">Please share your referral link <span class="text-primary text-decoration-underline">https://www.21spirit.com/account/register?ref={{ $user->referral_token }}</span> with others in order to earn {{ $setting->wallet_credits }} wallet credits</span>
                     <div>
                         <a target="_blank" class="btn btn-sm btn-success discount-share-btn cp-btn" href="https://api.whatsapp.com/send?&text=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-whatsapp"></i></a>
-                        <a class="btn btn-sm btn-primary fb-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-facebook"></i></a>
-                        <a class="btn btn-sm btn-info discount-share-btn tw-btn" href="https://twitter.com/intent/tweet?url=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
-                        <a target="_blank" class="btn btn-sm btn-success discount-share-btn copy-btn" href="javascript:void(0);" onclick="copyClipboard()"><i class="fa fa-clone"></i></a>
+                        <a target="_blank" class="btn btn-sm btn-primary fb-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-facebook"></i></a>
+                        <a target="_blank" class="btn btn-sm btn-info discount-share-btn tw-btn" href="https://twitter.com/intent/tweet?url=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-sm btn-success discount-share-btn copy-btn" href="javascript:void(0);" onclick="copyClipboard()"><i class="fa fa-clone"></i></a>
                     </div>
                 </div>
             </div>
