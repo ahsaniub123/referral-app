@@ -185,6 +185,12 @@
                                 Recent Referral Users
                             </div>
                         </div>
+                        <form action="" class="mb-4" method="GET">
+                            <div class="form-group btn-group d-flex">
+                                <input value="" type="text" name="search" class="form-control" placeholder="Search users by name, email">
+                                <button class="btn btn-primary"><i class="fa fa-search m-1"></i> Search</button>
+                            </div>
+                        </form>
                         <div class="">
                             <div class=" table-responsive">
                             <table class="table table-vcenter card-table table-striped">
