@@ -161,7 +161,7 @@
                         <a target="_blank" class="btn btn-sm btn-success discount-share-btn cp-btn" href="https://api.whatsapp.com/send?&text=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-whatsapp"></i></a>
                         <a target="_blank" class="btn btn-sm btn-primary fb-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-facebook"></i></a>
                         <a target="_blank" class="btn btn-sm btn-info discount-share-btn tw-btn" href="https://twitter.com/intent/tweet?url=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-sm btn-success discount-share-btn copy-btn tooltips" href="javascript:void(0);" onclick="copyClipboard()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy to clipboard</span><i class="fa fa-clone"></i></a>
+                        <a class="btn btn-sm btn-secondary discount-share-btn copy-btn tooltips" href="javascript:void(0);" onclick="copyClipboard()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy to clipboard</span><i class="fa fa-clone"></i></a>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@
                    // Copy the text inside the text field
                   navigator.clipboard.writeText(copyText.value);
                   var tooltip = document.getElementById("myTooltip");
-                  tooltip.innerHTML = "Copied: " + copyText.value;
+                  tooltip.innerHTML = "Copied to clipboard";
                 }
                 function outFunc() {
                   var tooltip = document.getElementById("myTooltip");
