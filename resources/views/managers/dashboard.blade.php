@@ -25,7 +25,45 @@
             border-color: #fa755a;
         }
         .StripeElement--webkit-autofill { 
-            background-color: #fefde5 !important;}
+            background-color: #fefde5 !important;
+            }
+         .tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
     </style>
 @endsection
 
@@ -124,7 +162,7 @@
                         <a target="_blank" class="btn btn-sm btn-success discount-share-btn cp-btn" href="https://api.whatsapp.com/send?&text=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-whatsapp"></i></a>
                         <a target="_blank" class="btn btn-sm btn-primary fb-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-facebook"></i></a>
                         <a target="_blank" class="btn btn-sm btn-info discount-share-btn tw-btn" href="https://twitter.com/intent/tweet?url=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-sm btn-success discount-share-btn copy-btn" href="javascript:void(0);" onclick="copyClipboard()"><i class="fa fa-clone"></i></a>
+                        <a class="btn btn-sm btn-success discount-share-btn copy-btn" href="javascript:void(0);" onclick="copyClipboard()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy to clipboard</span><i class="fa fa-clone"></i></a>
                     </div>
                 </div>
             </div>
@@ -141,6 +179,12 @@
 
                    // Copy the text inside the text field
                   navigator.clipboard.writeText(copyText.value);
+                  var tooltip = document.getElementById("myTooltip");
+                  tooltip.innerHTML = "Copied: " + copyText.value;
+                }
+                function outFunc() {
+                  var tooltip = document.getElementById("myTooltip");
+                  tooltip.innerHTML = "Copy to clipboard";
                 }
             </script>
 
