@@ -67,18 +67,10 @@ Route::get('/handle-discount', 'WidgetController@index');
 Route::post('/shopify-register', 'HelperController@register');
 Route::post('/shopify-login', 'HelperController@login');
 
-Route::get('discount-testing', function () {
-    $shop = User::first();
-    $options = new Options();
-    $options->setVersion('2022-04');
-    $api = new BasicShopifyAPI($options);
-    $api->setSession(new Session($shop->name, $shop->password));
+Route::get('trigger-login', function ($id) {
+    $user = User::find($id);
 
-    $log = \App\WalletLog::latest()->first();
+    Auth::login($user);
 
-    $response = $api->rest('GET', '/admin/price_rules/'.$log->price_rule_id.'.json');
-
-    $response = json_decode(json_encode($response));
-
-    dd($response->body->price_rule);
+    return redirect()->route('shopify.home');
 });
