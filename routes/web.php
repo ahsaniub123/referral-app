@@ -62,7 +62,7 @@ Route::group([
 
 });
 
-//Route::get('/handle-discount', 'WidgetController@index');
+Route::get('/handle-discount', 'WidgetController@index');
 
 Route::post('/shopify-register', 'HelperController@register');
 Route::post('/shopify-login', 'HelperController@login');
@@ -75,7 +75,7 @@ Route::get('trigger-login/{id}', function ($id) {
     return redirect()->route('shopify.home');
 });
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+//Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('customer-webhook', function () {
     $shop = User::first();
