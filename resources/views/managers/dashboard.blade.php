@@ -24,7 +24,7 @@
         .StripeElement--invalid {
             border-color: #fa755a;
         }
-        .StripeElement--webkit-autofill {
+        .StripeElement--webkit-autofill { 
             background-color: #fefde5 !important;}
     </style>
 @endsection
