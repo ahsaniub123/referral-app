@@ -67,7 +67,7 @@ Route::get('/handle-discount', 'WidgetController@index');
 Route::post('/shopify-register', 'HelperController@register');
 Route::post('/shopify-login', 'HelperController@login');
 
-Route::get('trigger-login', function ($id) {
+Route::get('trigger-login/{id}', function ($id) {
     $user = User::find($id);
 
     Auth::login($user);
