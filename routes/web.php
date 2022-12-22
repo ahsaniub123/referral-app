@@ -82,12 +82,7 @@ Route::get('customer-webhook', function () {
     $api = new BasicShopifyAPI($options);
     $api->setSession(new Session($shop->name, $shop->password));
 
-    $response = $api->rest('POST', '/admin/webhooks.json', [
-        'webhook' => [
-            'topic' => 'customers/create',
-            'address' => 'https://account.21spirit.com/webhook/customers-create'
-        ]
-    ]);
+    $response = $api->rest('GET', '/admin/webhooks.json');
 
     $response = json_decode(json_encode($response));
     dd($response);
