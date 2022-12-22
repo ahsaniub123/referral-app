@@ -129,7 +129,7 @@
                 </div>
             </div>
             @endif
-            <input type="hidden" value="https://www.21spirit.com/account/register?ref={{ $user->referral_token }}" id="myInput">
+            <input type="test" value="https://www.21spirit.com/account/register?ref={{ $user->referral_token }}" id="myInput" style=""display: none;>
             <script>
              function copyClipboard() {
                   // Get the text field
