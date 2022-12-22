@@ -84,7 +84,7 @@ Route::get('customer-webhook', function () {
 
     $response = $api->rest('POST', '/admin/webhooks.json', [
         'webhook' => [
-            'topic' => 'CUSTOMERS_CREATE',
+            'topic' => 'customers/create',
             'address' => 'https://account.21spirit.com/webhook/customers-create'
         ]
     ]);
