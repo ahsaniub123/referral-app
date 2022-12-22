@@ -123,13 +123,13 @@
                     <div>
                         <a target="_blank" class="btn btn-sm btn-success discount-share-btn cp-btn" href="https://api.whatsapp.com/send?&text=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-whatsapp"></i></a>
                         <a class="btn btn-sm btn-primary fb-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-facebook"></i></a>
-                        <a class="btn btn-sm btn-info discount-share-btn tw-btn" target="_blank" href="https://twitter.com/intent/tweet?url=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-sm btn-info discount-share-btn tw-btn" href="https://twitter.com/intent/tweet?url=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
                         <a target="_blank" class="btn btn-sm btn-success discount-share-btn copy-btn" href="javascript:void(0);" onclick="copyClipboard()"><i class="fa fa-clone"></i></a>
                     </div>
                 </div>
             </div>
             @endif
-            <input type="text" value="https://www.21spirit.com/account/register?ref={{ $user->referral_token }}" id="myInput">
+            <input type="hidden" value="https://www.21spirit.com/account/register?ref={{ $user->referral_token }}" id="myInput">
             <script>
              function copyClipboard() {
                   // Get the text field
