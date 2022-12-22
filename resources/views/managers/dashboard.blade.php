@@ -27,12 +27,11 @@
         .StripeElement--webkit-autofill { 
             background-color: #fefde5 !important;
             }
-         .tooltip {
+         .tooltips {
   position: relative;
-  display: inline-block;
 }
 
-.tooltip .tooltiptext {
+.tooltips .tooltiptext {
   visibility: hidden;
   width: 140px;
   background-color: #555;
@@ -49,7 +48,7 @@
   transition: opacity 0.3s;
 }
 
-.tooltip .tooltiptext::after {
+.tooltips .tooltiptext::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -60,7 +59,7 @@
   border-color: #555 transparent transparent transparent;
 }
 
-.tooltip:hover .tooltiptext {
+.tooltips:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
@@ -162,7 +161,7 @@
                         <a target="_blank" class="btn btn-sm btn-success discount-share-btn cp-btn" href="https://api.whatsapp.com/send?&text=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-whatsapp"></i></a>
                         <a target="_blank" class="btn btn-sm btn-primary fb-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-facebook"></i></a>
                         <a target="_blank" class="btn btn-sm btn-info discount-share-btn tw-btn" href="https://twitter.com/intent/tweet?url=https://www.21spirit.com/account/register?ref={{ $user->referral_token }}"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-sm btn-success discount-share-btn copy-btn tooltip" href="javascript:void(0);" onclick="copyClipboard()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy to clipboard</span><i class="fa fa-clone"></i></a>
+                        <a class="btn btn-sm btn-success discount-share-btn copy-btn tooltips" href="javascript:void(0);" onclick="copyClipboard()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy to clipboard</span><i class="fa fa-clone"></i></a>
                     </div>
                 </div>
             </div>
