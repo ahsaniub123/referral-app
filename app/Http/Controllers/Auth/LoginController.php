@@ -40,9 +40,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
+   /* 
     public function logout(Request $request) {
       Auth::logout();
       return redirect('https://www.21spirit.com/account/logout');
     }
+    */
 }
