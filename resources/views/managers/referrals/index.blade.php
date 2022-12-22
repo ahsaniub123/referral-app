@@ -15,14 +15,14 @@
 @section('content')
     <div class="col-12">
         <div class="row row-cards">
-
+         <!--
             <form action="" class="mb-2" method="GET">
                 <div class="form-group btn-group d-flex">
                     <input value="{{ request()->search }}" type="text" name="search" class="form-control" placeholder="Search users by name, email">
                     <button class="btn btn-primary"><i class="fa fa-search m-1"></i> Search</button>
                 </div>
             </form>
-
+           -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body p-2 text-center">
@@ -85,9 +85,16 @@
                                         </td>
                                         <td>
                                             @if($referral->subscription)
-                                                <span class="badge bg-success">Completed</span>
+                                                <span class="badge bg-success">Subscribed</span>
                                             @else
-                                                <span class="badge bg-danger">Not Completed</span>
+                                                @php
+                                                    $referral_subscription_history = $referral->subscription_history()->whereNotNull('ended_at')->first();
+                                                @endphp
+                                                @if($referral_subscription_history)
+                                                    <span class="badge bg-danger">Expired</span>
+                                                @else
+                                                    <span class="badge bg-warning">Unsubscribed</span>
+                                                @endif
                                             @endif
                                         </td>
                                         <td>
