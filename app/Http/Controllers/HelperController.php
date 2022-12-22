@@ -43,7 +43,7 @@ class HelperController extends Controller
 
         Auth::login($user);
 
-        return response()->json(['status' => 'success'], 201);
+        return response()->json(['status' => 'success', 'user_id' => $user->id], 201);
     }
 
     public function login(Request $request) {
