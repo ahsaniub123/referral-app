@@ -50,6 +50,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+
+        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+            return redirect('https://www.21spirit.com/account/logout');
+        }
+
         return parent::render($request, $exception);
     }
 }
