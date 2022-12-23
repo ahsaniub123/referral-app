@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler
             return redirect('https://www.21spirit.com/account/logout');
         }
         elseif($exception instanceof RouteNotFoundException) {
-            return redirect('https://www.21spirit.com/account/logout');
+            return redirect('https://www.21spirit.com/account');
         }
 
         return parent::render($request, $exception);
