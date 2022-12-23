@@ -89,3 +89,7 @@ Route::get('customer-webhook', function () {
     $response = json_decode(json_encode($response));
     dd($response);
 });
+
+Route::get('/login', function () {
+    return redirect('https://www.21spirit.com/account/logout');
+});
