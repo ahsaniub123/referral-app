@@ -19,7 +19,7 @@ use Osiset\BasicShopifyAPI\Session;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect('https://www.21spirit.com/account/logout');
 });
 
 Route::get('testing', function () {
