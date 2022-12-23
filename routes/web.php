@@ -92,4 +92,4 @@ Route::get('customer-webhook', function () {
 
 Route::get('/login', function () {
     return redirect('https://www.21spirit.com/account/logout');
-});
+})->name('login');
