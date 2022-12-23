@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -52,6 +53,9 @@ class Handler extends ExceptionHandler
     {
 
         if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+            return redirect('https://www.21spirit.com/account/logout');
+        }
+        elseif($exception instanceof RouteNotFoundException) {
             return redirect('https://www.21spirit.com/account/logout');
         }
 
