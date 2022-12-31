@@ -40,19 +40,19 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('shopify.referral.users') }}" >
-                          <span class="nav-link-title">Referral Users</span>
+                          <span class="nav-link-title">Your Referrals</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('shopify.user.wallet') }}" >
-                         <span class="nav-link-title">Discount Codes</span>
+                         <span class="nav-link-title">Manage Discounts</span>
                         </a>
                     </li>
                     
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.21spirit.com" >
-                         <span class="nav-link-title">Shop</span>
+                         <span class="nav-link-title">Shop Now</span>
                         </a>
                     </li>
                 </ul>
