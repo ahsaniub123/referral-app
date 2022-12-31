@@ -5,9 +5,8 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a>
-                <img src="https://cdn.shopify.com/s/files/1/0550/4060/6257/files/21.png?v=1665085801" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                <img src="https://cdn.shopify.com/s/files/1/0550/4060/6257/files/21_Spirit_Premium_Logo.png?v=1672484757" width="110" height="32" alt="{{ env('APP_NAME') }} Premium" class="navbar-brand-image">
             </a>
-            <span class="font-weight-medium mx-2 text-muted">{{ env('APP_NAME') }} Premium</span>
         </h1>
 
         <div class="collapse navbar-collapse" id="navbar-menu">
