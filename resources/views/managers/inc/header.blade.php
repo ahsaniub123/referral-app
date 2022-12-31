@@ -49,6 +49,12 @@
                          <span class="nav-link-title">Discount Codes</span>
                         </a>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.21spirit.com" >
+                         <span class="nav-link-title">Shop</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
