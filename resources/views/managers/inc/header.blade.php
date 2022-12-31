@@ -14,7 +14,7 @@
             </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url({{ asset('3.png') }})"></span>
+                    <span class="avatar avatar-sm" style="background-image: url(https://cdn.shopify.com/s/files/1/0550/4060/6257/files/computer-user-icon.webp?v=1672485824)"></span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ \Illuminate\Support\Facades\Auth::user()->name }}</div>
                     </div>
