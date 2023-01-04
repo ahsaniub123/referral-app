@@ -16,6 +16,7 @@
     <meta property="og:title" content="21 Spirit Premium" />
     <meta property="og:url" content="https://account.21spirit.com/register" />
     <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0550/4060/6257/files/21spiritad.jpg?v=1671564865"/>
+    <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0550/4060/6257/files/favicon-1_96x.png?v=1672810784" type="image/png">
     <!-- CSS files -->
     <link href="{{ asset('admin/css/tabler.min.css') }}" rel="stylesheet"/>
     <link href={{ asset('admin/css/tabler-vendors.min.css') }} rel="stylesheet"/>
