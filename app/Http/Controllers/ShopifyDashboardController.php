@@ -315,6 +315,8 @@ class ShopifyDashboardController extends Controller
         
         return view('managers.subscription.index')->with([
             'user' => $user,
+            'setting' => $setting,
+            'subscription_plans' => $subscription_plans
         ]);
     }
 }
