@@ -307,6 +307,9 @@ class ShopifyDashboardController extends Controller
 
         $user = Auth::user();
         
+        if($user->subscription)
+            return redirect()->route('shopify.home')->with('error', 'You already have subscription');
+        
         return view('managers.subscription.index')->with([
             'user' => $user,
         ]);
