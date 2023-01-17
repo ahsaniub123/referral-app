@@ -306,6 +306,9 @@ class ShopifyDashboardController extends Controller
     public function showSubscriptionPage(Request $request) {
 
         $user = Auth::user();
+        $setting = Setting::first();
+        $admin = User::first();
+        $subscription_plans = SubscriptionPlan::all();
         
         if($user->subscription)
             return redirect()->route('shopify.home')->with('error', 'You already have subscription');
