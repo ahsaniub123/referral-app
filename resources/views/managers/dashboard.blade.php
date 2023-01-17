@@ -154,7 +154,7 @@
 
 
             @if($user->subscription)
-                <div class="col-md-12">
+             <div class="col-md-12">
                 <div class="alert d-flex justify-content-between">
                     <span class="alert-title">Please share your referral link <span class="text-primary text-decoration-underline">https://www.21spirit.com/account/register?ref={{ $user->referral_token }}</span> with others in order to earn {{ $setting->wallet_credits }} wallet credits</span>
                     <div>
@@ -164,7 +164,7 @@
                         <a class="btn btn-sm btn-secondary discount-share-btn copy-btn tooltips" href="javascript:void(0);" onclick="copyClipboard()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy to clipboard</span><i class="fa fa-clone"></i></a>
                     </div>
                 </div>
-            </div>
+             </div>
             @endif
             <input type="test" value="https://www.21spirit.com/account/register?ref={{ $user->referral_token }}" id="myInput" style="display: none;">
             <script>
