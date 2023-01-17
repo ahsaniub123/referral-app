@@ -306,10 +306,7 @@ class ShopifyDashboardController extends Controller
     public function showSubscriptionPage(Request $request) {
 
         $user = Auth::user();
-
-        if(!$user->subscription)
-            return redirect()->route('shopify.home')->with('error', 'Please complete subscription first');
-
+        
         return view('managers.subscription.index')->with([
             'user' => $user,
         ]);
