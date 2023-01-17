@@ -59,6 +59,7 @@ Route::group([
     Route::get('/wallet-details', 'ShopifyDashboardController@showWalletDetails')->name('shopify.user.wallet');
     Route::post('/complete-subscription', 'ShopifyDashboardController@markSubscriptionAsComplete')->name('shopify.subscription.complete');
     Route::post('/generate-discount-code', 'ShopifyDashboardController@generateDiscountCode')->name('generate.discount.code');
+    Route::post('/subscription', 'ShopifyDashboardController@showSubscriptionPage')->name('shopify.subscription.page');
 
 });
 
