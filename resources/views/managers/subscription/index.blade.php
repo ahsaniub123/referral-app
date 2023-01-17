@@ -104,8 +104,8 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
         // Create a Stripe client.
-        //var stripe = Stripe('pk_test_v3Q9XVLEYLCmm2YbBehuLAQL00W52okI7i'); // test keys
-        var stripe = Stripe('pk_live_51M5z01HnqCyR2JEruCtT6i4DlHkyZs7yXViecOR42N2KlP50c7Flji2z1oXs6KND4yxhLAC1fqKrRY87VBCfVtCx00p2vXM1ab');
+        var stripe = Stripe('pk_test_v3Q9XVLEYLCmm2YbBehuLAQL00W52okI7i'); // test keys
+        //var stripe = Stripe('pk_live_51M5z01HnqCyR2JEruCtT6i4DlHkyZs7yXViecOR42N2KlP50c7Flji2z1oXs6KND4yxhLAC1fqKrRY87VBCfVtCx00p2vXM1ab');
         // Create an instance of Elements.
         var elements = stripe.elements();
         // Custom styling can be passed to options when creating an Element.
