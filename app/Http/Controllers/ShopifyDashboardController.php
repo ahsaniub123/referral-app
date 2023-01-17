@@ -302,4 +302,16 @@ class ShopifyDashboardController extends Controller
 
         return redirect()->back()->with('success', 'Discount code generated successfully!');
     }
+    
+    public function showSubscriptionPage(Request $request) {
+
+        $user = Auth::user();
+
+        if(!$user->subscription)
+            return redirect()->route('shopify.home')->with('error', 'Please complete subscription first');
+
+        return view('managers.subscription.index')->with([
+            'user' => $user,
+        ]);
+    }
 }
