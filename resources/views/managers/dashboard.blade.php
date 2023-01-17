@@ -150,7 +150,7 @@
 
                     </div>
                 </div>
-            @endif
+            @else
 
 
             @if($user->subscription)
@@ -301,7 +301,7 @@
                     </div>
                 </div>
             </div>
-
+           @endif
         </div>
 
     </div>
