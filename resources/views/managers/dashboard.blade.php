@@ -150,6 +150,15 @@
 
                     </div>
                 </div>
+                <script>
+                  $(document).ready(function() {
+
+                      if(window.location.href.indexOf('#modal-subscribe') != -1) {
+                        $('#modal-subscribe').modal('show');
+                      }
+
+                    });
+                </script>
             @else
 
 
