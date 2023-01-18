@@ -24,6 +24,7 @@ class ShopifyDashboardController extends Controller
         $setting = Setting::first();
         $admin = User::first();
         $subscription_plans = SubscriptionPlan::all();
+        $subscription_plans = $subscription_plans->reverse();
         $options = new Options();
         $options->setVersion('2022-04');
         $api = new BasicShopifyAPI($options);
@@ -309,6 +310,7 @@ class ShopifyDashboardController extends Controller
         $setting = Setting::first();
         $admin = User::first();
         $subscription_plans = SubscriptionPlan::all();
+        $subscription_plans = $subscription_plans->reverse();
         
         if($user->subscription)
             return redirect()->route('shopify.home')->with('success','You Have Subscription');
