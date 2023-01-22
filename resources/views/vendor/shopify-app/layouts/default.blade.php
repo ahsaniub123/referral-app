@@ -41,7 +41,7 @@
                         <ul class="list-inline list-inline-dots mb-0">
                             <li class="list-inline-item">
                                 Copyright &copy; 2022
-                                <span href="#" class="link-secondary">{{ config('app.name') }}</span>.
+                                <span href="#" class="link-secondary">{{ config('app.name') }} Premium</span>.
                                 All rights reserved.
                             </li>
                         </ul>
