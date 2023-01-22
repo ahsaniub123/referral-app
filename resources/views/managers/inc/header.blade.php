@@ -46,7 +46,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('shopify.user.wallet') }}" >
-                         <span class="nav-link-title">Manage Discounts</span>
+                         <span class="nav-link-title">Manage Your Discounts</span>
                         </a>
                     </li>
                     @endif
