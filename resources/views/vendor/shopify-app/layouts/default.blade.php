@@ -12,6 +12,14 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         @yield('styles')
+        
+        <style>
+        @font-face {
+               src: url('//cdn.shopify.com/s/files/1/0550/4060/6257/t/3/assets/MyriadVariableConcept-Roman.otf.woff2?v=25693293860183757831674380441') format('woff2-variations');
+               font-family:'Myriad Variable Concept';
+            }
+            body { font-family:'Myriad Variable Concept' !important; }
+        </style>
     </head>
 
     <body class="antialiased">
