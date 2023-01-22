@@ -8,6 +8,13 @@
 */
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+@font-face {
+   src: url('//cdn.shopify.com/s/files/1/0550/4060/6257/t/3/assets/MyriadVariableConcept-Roman.otf.woff2?v=25693293860183757831674380441') format('woff2-variations');
+   font-family:'Myriad Variable Concept';
+}
+
+
 :root {
   --tblr-blue: #206bc4;
   --tblr-azure: #4299e1;
@@ -29,7 +36,8 @@
   --tblr-danger: #d63939;
   --tblr-light: #f4f6fa;
   --tblr-dark: #232e3c;
-  --tblr-font-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+/*   --tblr-font-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; */
+  --tblr-font-sans-serif: "Myriad Variable Concept";
   --tblr-font-monospace: null, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   --tblr-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0)); }
 
